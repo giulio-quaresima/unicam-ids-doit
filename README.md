@@ -1,3 +1,6 @@
 # DoIt
-## Progetto di Ingegneria del Software
-## Università di Camerino --- Prof. Andrea Polini
+
+## Introduzione
+Progetto di laboratorio di Ingegneria del Software, Università di Camerino, A.A. 2020/21.
+
+## Descrizione del progetto
