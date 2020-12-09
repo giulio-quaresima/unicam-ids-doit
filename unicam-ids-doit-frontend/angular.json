@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "unicam-ids-doit-frontend"
+  "defaultProject": "unicam-ids-doit-frontend",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -12,7 +12,7 @@ public class Progetto extends AbstractEntity<Progetto>
 {
 
 	@Override
-	protected Class<Progetto> getEntityType()
+	protected Class<Progetto> entityType()
 	{
 		return Progetto.class;
 	}

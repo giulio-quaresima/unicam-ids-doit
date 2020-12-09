@@ -22,7 +22,7 @@ public abstract class AbstractEntity<T extends AbstractEntity<?>>
 		this.id = id;
 	}
 	
-	protected abstract Class<T> getEntityType();
+	protected abstract Class<T> entityType();
 
 	@Override
 	public int hashCode()
@@ -46,7 +46,7 @@ public abstract class AbstractEntity<T extends AbstractEntity<?>>
 			if (id != null)
 			{
 				AbstractEntity<?> other = (AbstractEntity<?>) obj;
-				if (getEntityType().equals(other.getEntityType()))
+				if (entityType().equals(other.entityType()))
 				{
 					return id.equals(other.id);
 				}

@@ -19,6 +19,12 @@ import org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 
+/**
+ * Utilità per generare il DDL per la creazione delle tabelle, da incollare nel file
+ * /unicam-ids-doit-backend/src/main/resources/it/unicam/ids/doit/model/create.sql.
+ * 
+ * @author Giulio Quaresima (giulio.quaresima--at--gmail.com, giulio.quaresima--at--unipg.it, giulio.quaresima--at--studenti.unicam.it)
+ */
 public class DDL
 {
 

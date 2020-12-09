@@ -68,7 +68,7 @@ public class Utente extends AbstractEntity<Utente>
 	}
 
 	@Override
-	protected Class<Utente> getEntityType()
+	protected Class<Utente> entityType()
 	{
 		return Utente.class;
 	}

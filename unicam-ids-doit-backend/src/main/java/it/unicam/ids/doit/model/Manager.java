@@ -7,7 +7,7 @@ public class Manager extends AbstractEntity<Manager>
 {
 
 	@Override
-	protected Class<Manager> getEntityType()
+	protected Class<Manager> entityType()
 	{
 		return Manager.class;
 	}

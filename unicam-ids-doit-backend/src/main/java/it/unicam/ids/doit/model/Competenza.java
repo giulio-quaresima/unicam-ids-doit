@@ -12,7 +12,7 @@ public class Competenza extends AbstractEntity<Competenza>
 {
 
 	@Override
-	protected Class<Competenza> getEntityType()
+	protected Class<Competenza> entityType()
 	{
 		return Competenza.class;
 	}

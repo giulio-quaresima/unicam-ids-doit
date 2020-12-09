@@ -12,7 +12,7 @@ public class Proposta extends AbstractEntity<Proposta>
 {
 
 	@Override
-	protected Class<Proposta> getEntityType()
+	protected Class<Proposta> entityType()
 	{
 		return Proposta.class;
 	}
