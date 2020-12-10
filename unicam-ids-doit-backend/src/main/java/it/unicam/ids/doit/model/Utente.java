@@ -3,6 +3,8 @@ package it.unicam.ids.doit.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -21,6 +23,8 @@ public class Utente extends AbstractEntity<Utente>
 	private String givenName;
 	private String familyName;
 	private Set<SoggettoCollettivo> soggettiDiCuiMembro = new HashSet<>();
+	
+	private Account account;
 
 	@NotNull
 	public String getEmail()
@@ -67,10 +71,45 @@ public class Utente extends AbstractEntity<Utente>
 		this.soggettiDiCuiMembro = soggettiDiCuiMembro;
 	}
 
+	@Embedded
+	public Account getAccount()
+	{
+		return account;
+	}
+
+	public void setAccount(Account account)
+	{
+		this.account = account;
+	}
+
 	@Override
 	protected Class<Utente> entityType()
 	{
 		return Utente.class;
+	}
+	
+	@Embeddable
+	public static class Account
+	{
+		private String username;
+		private String password;
+		
+		public String getUsername()
+		{
+			return username;
+		}
+		public void setUsername(String username)
+		{
+			this.username = username;
+		}
+		public String getPassword()
+		{
+			return password;
+		}
+		public void setPassword(String password)
+		{
+			this.password = password;
+		}
 	}
 
 }

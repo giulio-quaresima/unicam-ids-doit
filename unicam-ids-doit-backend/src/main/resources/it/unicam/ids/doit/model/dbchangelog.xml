@@ -13,10 +13,20 @@
     </changeSet>
     
     <changeSet id="01-002-first_data" author="giulio">
+    
+    	<insert tableName="utente">
+    		<column name="given_name">Giulio</column>
+    		<column name="family_name">Quaresima</column>
+    		<column name="email">giulio.quaresima@studenti.unicam.it</column>
+    		<column name="username">giulio</column>
+<!--     		<column name="password"></column> -->
+    	</insert>
+    	
     	<insert tableName="soggetto_collettivo">
     		<column name="nome">Università di Camerino</column>
     		<column name="descrizione">Università di Camerino</column>
     	</insert>
+    	
     </changeSet>
     
 </databaseChangeLog>
