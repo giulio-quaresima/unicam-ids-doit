@@ -1,13 +1,24 @@
 package it.unicam.ids.doit.model;
 
+import java.util.Comparator;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import it.unicam.ids.doit.utils.IdentityComparator;
+
 @MappedSuperclass
-public abstract class AbstractEntity<T extends AbstractEntity<?>>
+public abstract class AbstractEntity<T extends AbstractEntity<?>> implements Comparable<T>
 {
+	public static final Comparator<AbstractEntity<?>> IDENTITY_COMPARATOR = new IdentityComparator<AbstractEntity<?>>();
+	public static final Comparator<AbstractEntity<?>> ID_COMPARATOR = 
+			Comparator.nullsLast(
+					Comparator.comparing(AbstractEntity::getId, Comparator.nullsLast(Comparator.naturalOrder()))
+					);
+	public static final Comparator<AbstractEntity<?>> DEFAULT_COMPARATOR = ID_COMPARATOR.thenComparing(IDENTITY_COMPARATOR);
+	
 	private Integer id;
 
 	@Id
@@ -54,6 +65,12 @@ public abstract class AbstractEntity<T extends AbstractEntity<?>>
 		}
 		
 		return false;
+	}
+
+	@Override
+	public int compareTo(T o)
+	{
+		return DEFAULT_COMPARATOR.compare(this, o);
 	}
 	
 }

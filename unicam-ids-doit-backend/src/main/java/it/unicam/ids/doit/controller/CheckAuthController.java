@@ -5,7 +5,6 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.unicam.ids.doit.model.Utente;
@@ -19,7 +18,6 @@ public class CheckAuthController
 	private UtenteRepository utenteRepository;
 	
 	@GetMapping ("/AuthStatus")
-	@ResponseBody
 	public AuthStatus isAuthenticated(Principal principal)
 	{
 		Utente utente = null;

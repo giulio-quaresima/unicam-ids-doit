@@ -1,0 +1,24 @@
+<form [formGroup]="creaProgettoForm" (ngSubmit)="submit(creaProgettoForm.value)">
+	
+	<div class="form-group">
+		<label>Soggetto per conto del quale si vuole creare il progetto</label>
+<!-- 		<input formControlName="soggettoCollettivo" class="form-control" required="required"/> -->
+		<select formControlName="soggettoCollettivo" class="form-control" required="required">
+			<option value="">Scegli un soggetto</option>
+			<option *ngFor="let soggetto of soggettiUtente" value="{{soggetto.id}}">{{soggetto.nome}}</option>
+		</select>
+	</div>
+	
+	<div class="form-group">
+		<label>Nome del progetto</label>
+		<input formControlName="titolo" class="form-control" required="required"/>
+	</div>
+	
+	<div class="form-group">
+		<label>Una breve descrizione iniziale (<em>opzionale</em>)</label>
+		<textarea formControlName="descrizione" class="form-control"></textarea>
+	</div>
+	
+	<button type="submit" class="btn btn-primary">Crea</button>
+	
+</form>

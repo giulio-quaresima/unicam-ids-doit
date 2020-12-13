@@ -23,8 +23,33 @@
     	</insert>
     	
     	<insert tableName="soggetto_collettivo">
+    		<column name="nome">Regione Marche</column>
+    		<column name="descrizione">Regione Marche</column>
+    	</insert>
+    	
+    	<insert tableName="soggetto_collettivo">
+    		<column name="nome">Comune di Camerino</column>
+    		<column name="descrizione">Comune di Camerino</column>
+    	</insert>
+    	
+    	<insert tableName="soggetto_collettivo">
     		<column name="nome">Università di Camerino</column>
     		<column name="descrizione">Università di Camerino</column>
+    	</insert>
+    	
+    	<insert tableName="soggetto_collettivo">
+    		<column name="nome">Università di Perugia</column>
+    		<column name="descrizione">Università di Perugia</column>
+    	</insert>
+    	
+    	<insert tableName="membership">
+    		<column name="utente_id" valueComputed="SELECT id FROM utente WHERE username = 'giulio'"/>
+    		<column name="soggetto_collettivo_id" valueComputed="SELECT id FROM soggetto_collettivo WHERE nome = 'Università di Camerino'"/>
+    	</insert>
+    	
+    	<insert tableName="membership">
+    		<column name="utente_id" valueComputed="SELECT id FROM utente WHERE username = 'giulio'"/>
+    		<column name="soggetto_collettivo_id" valueComputed="SELECT id FROM soggetto_collettivo WHERE nome = 'Università di Perugia'"/>
     	</insert>
     	
     </changeSet>

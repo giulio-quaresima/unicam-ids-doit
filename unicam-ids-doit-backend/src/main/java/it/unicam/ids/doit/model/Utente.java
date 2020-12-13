@@ -1,13 +1,16 @@
 package it.unicam.ids.doit.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import org.hibernate.annotations.SortNatural;
 
 import com.sun.istack.NotNull;
 
@@ -22,7 +25,7 @@ public class Utente extends AbstractEntity<Utente>
 	private String email;
 	private String givenName;
 	private String familyName;
-	private Set<SoggettoCollettivo> soggettiDiCuiMembro = new HashSet<>();
+	private SortedSet<SoggettoCollettivo> soggettiDiCuiMembro = new TreeSet<>();
 	
 	private Account account;
 
@@ -60,13 +63,14 @@ public class Utente extends AbstractEntity<Utente>
 	}
 
 	@ManyToMany (targetEntity = SoggettoCollettivo.class)
-	@JoinTable (name = "membership")
-	public Set<SoggettoCollettivo> getSoggettiDiCuiMembro()
+	@JoinTable (name = "membership", inverseJoinColumns = @JoinColumn (name = "soggetto_collettivo_id"))
+	@SortNatural
+	public SortedSet<SoggettoCollettivo> getSoggettiDiCuiMembro()
 	{
 		return soggettiDiCuiMembro;
 	}
 
-	public void setSoggettiDiCuiMembro(Set<SoggettoCollettivo> soggettiDiCuiMembro)
+	public void setSoggettiDiCuiMembro(SortedSet<SoggettoCollettivo> soggettiDiCuiMembro)
 	{
 		this.soggettiDiCuiMembro = soggettiDiCuiMembro;
 	}
