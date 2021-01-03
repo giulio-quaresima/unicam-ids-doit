@@ -14,42 +14,67 @@
     
     <changeSet id="01-002-first_data" author="giulio">
     
-    	<insert tableName="utente">
-    		<column name="given_name">Giulio</column>
-    		<column name="family_name">Quaresima</column>
-    		<column name="email">giulio.quaresima@studenti.unicam.it</column>
-    		<column name="username">giulio</column>
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>
+    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Giulio</column>
+    		<column name="cognome">Quaresima</column>
 <!--     		<column name="password"></column> -->
     	</insert>
     	
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">giulio</column>
+    		<column name="email">giulio.quaresima@studenti.unicam.it</column>
+    	</insert>
+    	
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="C"/>
+    	</insert>
+    
     	<insert tableName="soggetto_collettivo">
-    		<column name="nome">Regione Marche</column>
-    		<column name="descrizione">Regione Marche</column>
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="denominazione">Università di Camerino</column>
     	</insert>
     	
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="C"/>
+    	</insert>
+    
     	<insert tableName="soggetto_collettivo">
-    		<column name="nome">Comune di Camerino</column>
-    		<column name="descrizione">Comune di Camerino</column>
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="denominazione">Comune di Camerino</column>
     	</insert>
     	
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="C"/>
+    	</insert>
+    
     	<insert tableName="soggetto_collettivo">
-    		<column name="nome">Università di Camerino</column>
-    		<column name="descrizione">Università di Camerino</column>
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="denominazione">Regione Marche</column>
     	</insert>
     	
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="C"/>
+    	</insert>
+    
     	<insert tableName="soggetto_collettivo">
-    		<column name="nome">Università di Perugia</column>
-    		<column name="descrizione">Università di Perugia</column>
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="denominazione">Università di Perugia</column>
     	</insert>
     	
-    	<insert tableName="membership">
-    		<column name="utente_id" valueComputed="SELECT id FROM utente WHERE username = 'giulio'"/>
-    		<column name="soggetto_collettivo_id" valueComputed="SELECT id FROM soggetto_collettivo WHERE nome = 'Università di Camerino'"/>
+    	<insert tableName="appartenenza">
+    		<column name="membro" valueComputed="SELECT id FROM account WHERE username = 'giulio'"/>
+    		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Università di Camerino'"/>
     	</insert>
     	
-    	<insert tableName="membership">
-    		<column name="utente_id" valueComputed="SELECT id FROM utente WHERE username = 'giulio'"/>
-    		<column name="soggetto_collettivo_id" valueComputed="SELECT id FROM soggetto_collettivo WHERE nome = 'Università di Perugia'"/>
+    	<insert tableName="appartenenza">
+    		<column name="membro" valueComputed="SELECT id FROM account WHERE username = 'giulio'"/>
+    		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Università di Perugia'"/>
     	</insert>
     	
     </changeSet>

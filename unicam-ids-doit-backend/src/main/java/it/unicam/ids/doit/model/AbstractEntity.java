@@ -10,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 import it.unicam.ids.doit.utils.IdentityComparator;
 
 @MappedSuperclass
-public abstract class AbstractEntity<T extends AbstractEntity<?>> implements Comparable<T>
+public abstract class AbstractEntity<E extends AbstractEntity<?>> implements Comparable<E>
 {
 	public static final Comparator<AbstractEntity<?>> IDENTITY_COMPARATOR = new IdentityComparator<AbstractEntity<?>>();
 	public static final Comparator<AbstractEntity<?>> ID_COMPARATOR = 
@@ -33,8 +33,13 @@ public abstract class AbstractEntity<T extends AbstractEntity<?>> implements Com
 		this.id = id;
 	}
 	
-	protected abstract Class<T> entityType();
-
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
+	protected abstract Class<E> entityType();
+	
 	@Override
 	public int hashCode()
 	{
@@ -68,7 +73,7 @@ public abstract class AbstractEntity<T extends AbstractEntity<?>> implements Com
 	}
 
 	@Override
-	public int compareTo(T o)
+	public int compareTo(E o)
 	{
 		return DEFAULT_COMPARATOR.compare(this, o);
 	}

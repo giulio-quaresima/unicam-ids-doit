@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.unicam.ids.doit.model.Utente;
+import it.unicam.ids.doit.model.SoggettoUtente;
 import it.unicam.ids.doit.repo.UtenteRepository;
 
 @RestController
@@ -20,7 +20,7 @@ public class CheckAuthController
 	@GetMapping ("/AuthStatus")
 	public AuthStatus isAuthenticated(Principal principal)
 	{
-		Utente utente = null;
+		SoggettoUtente utente = null;
 		if (principal != null)
 		{
 			utente = utenteRepository.findOneByAccountUsername(principal.getName());
@@ -31,9 +31,9 @@ public class CheckAuthController
 	public static class AuthStatus
 	{
 		private final boolean authenticated;
-		private final Utente utente;
+		private final SoggettoUtente utente;
 		
-		public AuthStatus(Utente utente)
+		public AuthStatus(SoggettoUtente utente)
 		{
 			super();
 			this.authenticated = utente != null;
@@ -45,7 +45,7 @@ public class CheckAuthController
 			return authenticated;
 		}
 
-		public Utente getUtente()
+		public SoggettoUtente getUtente()
 		{
 			return utente;
 		}

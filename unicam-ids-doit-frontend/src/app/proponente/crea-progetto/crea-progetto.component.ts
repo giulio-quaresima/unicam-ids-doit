@@ -27,7 +27,6 @@ export class CreaProgettoComponent implements OnInit {
     ) { }
 
   submit(progetto : Progetto) : void {
-    alert(progetto.titolo);
     this.pgService.create(progetto).subscribe((response)=>{
       console.log(response);
    });

@@ -5,7 +5,7 @@
 <!-- 		<input formControlName="soggettoCollettivo" class="form-control" required="required"/> -->
 		<select formControlName="soggettoCollettivo" class="form-control" required="required">
 			<option value="">Scegli un soggetto</option>
-			<option *ngFor="let soggetto of soggettiUtente" value="{{soggetto.id}}">{{soggetto.nome}}</option>
+			<option *ngFor="let soggetto of soggettiUtente" value="{{soggetto.id}}">{{soggetto.denominazione}}</option>
 		</select>
 	</div>
 	

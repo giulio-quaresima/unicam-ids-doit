@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
@@ -37,6 +38,7 @@ public class DDL
 				
 		ClassPathScanningCandidateComponentProvider classPathScanningCandidateComponentProvider = new ClassPathScanningCandidateComponentProvider(false);
 		classPathScanningCandidateComponentProvider.addIncludeFilter(new AnnotationTypeFilter(Entity.class));
+		classPathScanningCandidateComponentProvider.addIncludeFilter(new AnnotationTypeFilter(MappedSuperclass.class));
 		
 		MetadataSources metadataSources = new MetadataSources(serviceRegistry);
 		String[] packageNames = {"it.unicam.ids.doit.model"};
