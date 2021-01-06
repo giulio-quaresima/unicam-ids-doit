@@ -7,12 +7,18 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CreaProgettoComponent } from './proponente/crea-progetto/crea-progetto.component';
+import { CreaProgettoComponent } from './components/crea-progetto/crea-progetto.component';
+import { HomeComponent } from './components/home/home.component';
+import { ModificaProgettoComponent } from './components/modifica-progetto/modifica-progetto.component';
+import { NotFoundComponent } from './components/http/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreaProgettoComponent
+    CreaProgettoComponent,
+    HomeComponent,
+    ModificaProgettoComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

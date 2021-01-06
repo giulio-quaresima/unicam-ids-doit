@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.unicam.ids.doit.dto.ProgettoForm;
 import it.unicam.ids.doit.model.Progetto;
+import it.unicam.ids.doit.model.Progetto.Stato;
 import it.unicam.ids.doit.repo.ProgettoRepository;
 
 @RestController
@@ -28,8 +30,11 @@ public class ProgettoController
 	}
 	
 	@PutMapping
-	public Progetto create(@RequestBody Progetto progetto)
+	public Progetto create(@RequestBody ProgettoForm progettoForm)
 	{
+		Progetto progetto = progettoForm.getProgetto();
+		progetto.setOwner(progettoForm.getOwner());
+		progetto.setStato(Stato.IN_MODIFICA);
 		return progettoRepository.save(progetto);
 	}
 	

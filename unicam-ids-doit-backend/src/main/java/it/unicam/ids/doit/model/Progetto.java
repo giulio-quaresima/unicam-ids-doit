@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 
 /**
  * 
@@ -27,6 +29,8 @@ public class Progetto extends AbstractEntity<Progetto>
 	private Stato stato;
 	private String titolo;
 	private String descrizione;
+	
+	private SoggettoCollettivo owner;
 
 	@Enumerated (EnumType.STRING)
 	@Column (length = 32)
@@ -49,14 +53,24 @@ public class Progetto extends AbstractEntity<Progetto>
 		this.titolo = titolo;
 	}
 
+	@Lob
 	public String getDescrizione()
 	{
 		return descrizione;
 	}
-
 	public void setDescrizione(String descrizione)
 	{
 		this.descrizione = descrizione;
+	}
+
+	@ManyToOne (optional = false)
+	public SoggettoCollettivo getOwner()
+	{
+		return owner;
+	}
+	public void setOwner(SoggettoCollettivo owner)
+	{
+		this.owner = owner;
 	}
 
 	@Override

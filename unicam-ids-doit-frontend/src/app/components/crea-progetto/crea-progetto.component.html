@@ -1,11 +1,11 @@
-<form [formGroup]="creaProgettoForm" (ngSubmit)="submit(creaProgettoForm.value)">
+<form ngNativeValidate [formGroup]="creaProgettoForm" (ngSubmit)="submit(creaProgettoForm.value)">
 	
 	<div class="form-group">
 		<label>Soggetto per conto del quale si vuole creare il progetto</label>
 <!-- 		<input formControlName="soggettoCollettivo" class="form-control" required="required"/> -->
-		<select formControlName="soggettoCollettivo" class="form-control" required="required">
+		<select formControlName="owner" class="form-control" required="required">
 			<option value="">Scegli un soggetto</option>
-			<option *ngFor="let soggetto of soggettiUtente" value="{{soggetto.id}}">{{soggetto.denominazione}}</option>
+			<option *ngFor="let soggetto of soggettoCollettivoes._embedded.soggettoCollettivoes" value="{{soggetto._links.self.href}}">{{soggetto.denominazione}}</option>
 		</select>
 	</div>
 	

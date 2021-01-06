@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CreaProgettoComponent } from './proponente/crea-progetto/crea-progetto.component';
+import { HomeComponent } from './components/home/home.component';
+import { NotFoundComponent } from './components/http/not-found/not-found.component';
+import { CreaProgettoComponent } from './components/crea-progetto/crea-progetto.component';
+import { ModificaProgettoComponent } from './components/modifica-progetto/modifica-progetto.component';
 
 const routes: Routes = [
-  { path : "crea-progetto", component : CreaProgettoComponent}
+  { path : "", component : HomeComponent},
+  { path : "crea-progetto", component : CreaProgettoComponent},
+  { path : "modifica-progetto/:id", component : ModificaProgettoComponent},
+  { path : "**", component : NotFoundComponent}
 ];
 
 @NgModule({
