@@ -3,10 +3,11 @@ export interface HateoasResource {
 }
 
 export interface Links {
-	self : Self
+	[key : string] : Resource
 }
 
-export interface Self {
-	href : string
+export interface Resource {
+	href : string;
+	templated : boolean;
 }
 
