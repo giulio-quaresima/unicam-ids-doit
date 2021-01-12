@@ -27,12 +27,18 @@ public class Appartenenza extends AbstractEntity<Appartenenza>
 	public static final String UTENTE_COLUMN_NAME = "membro";
 	public static final String SOGCOLL_COLUMN_NAME = "organizzazione";
 	
-	private SoggettoUtente membro;
-	private SoggettoCollettivo organizzazione;
-	private Set<Autorizzazione> autorizzazioni;
-	
 	@ManyToOne
 	@JoinColumn (name = UTENTE_COLUMN_NAME)
+	private SoggettoUtente membro;
+
+	@ManyToOne
+	@JoinColumn (name = SOGCOLL_COLUMN_NAME)
+	private SoggettoCollettivo organizzazione;
+	
+	@Enumerated (EnumType.STRING)
+	@ElementCollection
+	private Set<Autorizzazione> autorizzazioni;
+	
 	public SoggettoUtente getMembro()
 	{
 		return membro;
@@ -42,8 +48,6 @@ public class Appartenenza extends AbstractEntity<Appartenenza>
 		this.membro = membro;
 	}
 	
-	@ManyToOne
-	@JoinColumn (name = SOGCOLL_COLUMN_NAME)
 	public SoggettoCollettivo getOrganizzazione()
 	{
 		return organizzazione;
@@ -53,8 +57,6 @@ public class Appartenenza extends AbstractEntity<Appartenenza>
 		this.organizzazione = organizzazione;
 	}
 	
-	@Enumerated (EnumType.STRING)
-	@ElementCollection
 	public Set<Autorizzazione> getAutorizzazioni()
 	{
 		return autorizzazioni;

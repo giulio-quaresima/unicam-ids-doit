@@ -1,14 +1,22 @@
 package it.unicam.ids.doit.model;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Candidatura extends AbstractEntity<Candidatura>
 {
+	@Basic
 	private String autopromozione;
+
+	@Basic
 	private boolean inviata = false;
+	
+	@ManyToOne
 	private Soggetto<?> soggetto;
+	
+	@ManyToOne
 	private Progetto progetto;
 
 	public String getAutopromozione()
@@ -29,7 +37,6 @@ public class Candidatura extends AbstractEntity<Candidatura>
 		this.inviata = inviata;
 	}
 
-	@ManyToOne
 	public Soggetto<?> getSoggetto()
 	{
 		return soggetto;
@@ -39,7 +46,6 @@ public class Candidatura extends AbstractEntity<Candidatura>
 		this.soggetto = soggetto;
 	}
 
-	@ManyToOne
 	public Progetto getProgetto()
 	{
 		return progetto;

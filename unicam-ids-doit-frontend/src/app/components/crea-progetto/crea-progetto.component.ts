@@ -19,7 +19,8 @@ export class CreaProgettoComponent implements OnInit {
 	creaProgettoForm = this.formBuilder.group({
 		owner : [''],
 		titolo : [''],
-		descrizione : ['']
+    descrizione : [''],
+    obiettivi : ['']
 	});
 
   constructor(

@@ -1,5 +1,6 @@
 package it.unicam.ids.doit.model;
 
+import javax.persistence.Basic;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue (value = "C")
 public class SoggettoCollettivo extends Soggetto<SoggettoCollettivo>
 {
+	@Basic
 	private String denominazione;
 	
 	@Override

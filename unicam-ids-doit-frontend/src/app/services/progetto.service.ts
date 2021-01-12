@@ -14,8 +14,16 @@ export class ProgettoService {
     return this.http.get<Progettoes>(this.url);
   }
 
+  find(id : number) : Observable<any> {
+    return this.http.get(this.url + "/" + id);
+  }
+
   create(progetto : Progetto) : Observable<any> {
     return this.http.post(this.url, progetto);
+  }
+
+  save(progetto : Progetto) : Observable<any> {
+    return this.http.put(progetto._links['self'].href, progetto);
   }
 
   constructor(private http: HttpClient) { }

@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.unicam.ids.doit.model.SoggettoUtente;
-import it.unicam.ids.doit.repo.UtenteRepository;
+import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
 
 @RestController
 @RequestMapping
 public class CheckAuthController
 {
 	@Autowired
-	private UtenteRepository utenteRepository;
+	private SoggettoUtenteRepository utenteRepository;
 	
 	@GetMapping ("/AuthStatus")
 	public AuthStatus isAuthenticated(Principal principal)

@@ -8,7 +8,6 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Transient;
 
 /**
  * 
@@ -31,20 +30,12 @@ public abstract class Soggetto<E extends Soggetto<?>> extends AbstractEntity<E> 
 	public static final Comparator<Soggetto<?>> DEFAULT_COMPARATOR = 
 			DENOMINAZIONE_COMPARATOR.thenComparing(AbstractEntity.DEFAULT_COMPARATOR);
 	
-	@Transient
 	public abstract String getDenominazione();
 
 	@Override
 	public int compareTo(E o)
 	{
 		return DEFAULT_COMPARATOR.compare(this, o);
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	protected Class<E> entityType()
-	{
-		return (Class<E>) Soggetto.class;
 	}
 
 }

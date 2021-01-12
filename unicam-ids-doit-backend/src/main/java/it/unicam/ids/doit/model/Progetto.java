@@ -1,11 +1,20 @@
 package it.unicam.ids.doit.model;
 
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.SortNatural;
+import org.springframework.beans.factory.annotation.Configurable;
 
 /**
  * 
@@ -13,6 +22,7 @@ import javax.persistence.ManyToOne;
  * @author Giulio Quaresima (giulio.quaresima--at--gmail.com, giulio.quaresima--at--unipg.it, giulio.quaresima--at--studenti.unicam.it)
  */
 @Entity
+@Configurable
 public class Progetto extends AbstractEntity<Progetto>
 {
 	public enum Stato {
@@ -26,34 +36,45 @@ public class Progetto extends AbstractEntity<Progetto>
 		ELIMINATO
 	}
 	
-	private Stato stato;
-	private String titolo;
-	private String descrizione;
-	
-	private SoggettoCollettivo owner;
-
 	@Enumerated (EnumType.STRING)
 	@Column (length = 32)
+	private Stato stato;
+	
+	@Basic
+	private String titolo;
+	
+	@Lob
+	private String descrizione;
+	
+	@Lob
+	private String obiettivi;
+	
+	@ManyToOne (optional = false)
+	private SoggettoCollettivo owner;
+
+	@ManyToMany
+	@JoinTable (name = "progetto_competenza")
+	@SortNatural
+	private SortedSet<Competenza> competenze = new TreeSet<Competenza>();
+
 	public Stato getStato()
 	{
 		return stato;
 	}
-
 	public void setStato(Stato stato)
 	{
 		this.stato = stato;
 	}
+	
 	public String getTitolo()
 	{
 		return titolo;
 	}
-
 	public void setTitolo(String titolo)
 	{
 		this.titolo = titolo;
 	}
 
-	@Lob
 	public String getDescrizione()
 	{
 		return descrizione;
@@ -63,7 +84,24 @@ public class Progetto extends AbstractEntity<Progetto>
 		this.descrizione = descrizione;
 	}
 
-	@ManyToOne (optional = false)
+	public String getObiettivi()
+	{
+		return obiettivi;
+	}
+	public void setObiettivi(String obiettivi)
+	{
+		this.obiettivi = obiettivi;
+	}
+
+	public SortedSet<Competenza> getCompetenze()
+	{
+		return competenze;
+	}
+	public void setCompetenze(SortedSet<Competenza> competenze)
+	{
+		this.competenze = competenze;
+	}
+
 	public SoggettoCollettivo getOwner()
 	{
 		return owner;

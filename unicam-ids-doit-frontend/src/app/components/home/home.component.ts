@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.progettoService.findAll().subscribe(progettoes => {
       for (let progetto of progettoes._embedded.progettoes) {
-        progetto.ownerAsync = this.genericService.getAny(progetto._links["owner"].href as string);
+        progetto.ownerAsync = this.genericService.getAny(progetto._links["owner"].href);
       }
       this.progettoes = progettoes;
     });

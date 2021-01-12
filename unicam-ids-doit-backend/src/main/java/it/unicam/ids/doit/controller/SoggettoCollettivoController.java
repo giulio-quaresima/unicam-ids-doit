@@ -19,7 +19,7 @@ import it.unicam.ids.doit.model.Appartenenza;
 import it.unicam.ids.doit.model.SoggettoCollettivo;
 import it.unicam.ids.doit.model.SoggettoUtente;
 import it.unicam.ids.doit.repo.SoggettoCollettivoRepository;
-import it.unicam.ids.doit.repo.UtenteRepository;
+import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
 
 @RestController
 @RequestMapping ("/SoggettoCollettivo")
@@ -33,7 +33,7 @@ public class SoggettoCollettivoController
 	private SoggettoCollettivoRepository soggettoCollettivoRepository;
 	
 	@Autowired
-	private UtenteRepository utenteRepository;
+	private SoggettoUtenteRepository utenteRepository;
 	
 	@GetMapping
 	public List<SoggettoCollettivo> soggetti()

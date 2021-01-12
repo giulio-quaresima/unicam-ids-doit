@@ -3,6 +3,7 @@ package it.unicam.ids.doit.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embeddable;
@@ -10,7 +11,6 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.SecondaryTable;
-import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue (value = "U")
@@ -19,9 +19,16 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 {
 	public static final String SECONDARY_TABLE = "account";
 	
-	private String cognome, nome;
-	private Account account;
+	@Basic
+	private String cognome;
 	
+	@Basic
+	private String nome;
+
+	@Embedded
+	private Account account;
+		
+	@OneToMany (mappedBy = "membro")
 	private Set<Appartenenza> appartenenze = new HashSet<Appartenenza>();
 
 	public String getCognome()
@@ -42,7 +49,6 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 		this.nome = nome;
 	}
 
-	@Embedded
 	public Account getAccount()
 	{
 		return account;
@@ -52,7 +58,6 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 		this.account = account;
 	}
 	
-	@OneToMany (mappedBy = "membro")
 	public Set<Appartenenza> getAppartenenze()
 	{
 		return appartenenze;
@@ -63,7 +68,6 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 	}
 	
 	@Override
-	@Transient
 	public String getDenominazione()
 	{
 		return getCognome() + ' ' + getNome();
@@ -78,10 +82,12 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 	@Embeddable
 	public static class Account
 	{
+		@Column (table = SECONDARY_TABLE)
 		private String username;
+
+		@Column (table = SECONDARY_TABLE)
 		private String email;
 		
-		@Column (table = SECONDARY_TABLE)
 		public String getUsername()
 		{
 			return username;
@@ -91,7 +97,6 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 			this.username = username;
 		}
 
-		@Column (table = SECONDARY_TABLE)
 		public String getEmail()
 		{
 			return email;

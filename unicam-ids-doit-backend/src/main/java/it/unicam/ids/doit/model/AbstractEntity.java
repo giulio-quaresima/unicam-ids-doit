@@ -19,10 +19,10 @@ public abstract class AbstractEntity<E extends AbstractEntity<?>> implements Com
 					);
 	public static final Comparator<AbstractEntity<?>> DEFAULT_COMPARATOR = ID_COMPARATOR.thenComparing(IDENTITY_COMPARATOR);
 	
-	private Integer id;
-
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private Integer id;
+
 	public Integer getId()
 	{
 		return id;
