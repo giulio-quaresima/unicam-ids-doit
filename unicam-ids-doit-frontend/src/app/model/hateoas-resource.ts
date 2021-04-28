@@ -1,4 +1,5 @@
 export interface HateoasResource {
+	id : number;
 	_links : Links;
 }
 

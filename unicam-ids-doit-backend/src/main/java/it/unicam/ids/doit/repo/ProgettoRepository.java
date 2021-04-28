@@ -4,5 +4,4 @@ import it.unicam.ids.doit.model.Progetto;
 
 public interface ProgettoRepository extends LayerSupertype<Progetto>
 {
-
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GenericService } from '../../services/generic.service'
+import { GenericService } from '../../services/generic.service';
 import { Progetto, Progettoes } from '../../model/progetto';
 import { ProgettoService } from '../../services/progetto.service';
 import { Observable } from 'rxjs';

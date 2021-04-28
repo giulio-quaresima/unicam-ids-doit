@@ -6,9 +6,9 @@ import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
-import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import it.unicam.ids.doit.model.Competenza;
 import it.unicam.ids.doit.repo.CompetenzaRepository;
 
-@BasePathAwareController
 @RepositoryRestController
-@RequestMapping ("/custom/competenze")
+@RequestMapping ("/custom/competenzas")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CompetenzeController
 {
 	@Autowired
@@ -28,10 +28,10 @@ public class CompetenzeController
 	@ResponseBody
 	@Transactional
 	@PutMapping ("/createIfNotExists")
-	public NavigableSet<Competenza> createIfNotExists(@RequestBody Tags tags)
+	public NavigableSet<Competenza> createIfNotExists(@RequestBody String[] tags)
 	{
 		NavigableSet<Competenza> competenzas = new TreeSet<>();
-		for (String tag : tags.tags)
+		for (String tag : tags)
 		{
 			Competenza competenza = new Competenza();
 			competenza.setTag(tag);
@@ -47,21 +47,6 @@ public class CompetenzeController
 			competenzas.add(competenza);
 		}
 		return competenzas;
-	}
-	
-	public static class Tags
-	{
-		private String[] tags;
-
-		public String[] getTags()
-		{
-			return tags;
-		}
-
-		public void setTags(String[] tags)
-		{
-			this.tags = tags;
-		}
 	}
 	
 }

@@ -9,8 +9,8 @@ export class GenericService {
   
   constructor(private http: HttpClient) { }
 
-  getAny(uri : string) : Observable<any> {
-    return this.http.get(uri);
+  getAny(url : string) : Observable<any> {
+    return this.http.get(url);
   }
 
 }

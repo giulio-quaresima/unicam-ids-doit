@@ -30,14 +30,14 @@ export class CreaProgettoComponent implements OnInit {
     private sgService : SoggettoCollettivoService
     ) { }
 
-  submit(progetto : Progetto) : void {
-    this.pgService.create(progetto).subscribe(response => {
-      this.router.navigate(['/']);
-   });
-  }
-
-  ngOnInit() : void {
-    this.sgService.getSoggettiUtente().subscribe(soggettoCollettivoes => this.soggettoCollettivoes = soggettoCollettivoes);
-  }
+    ngOnInit() : void {
+      this.sgService.getSoggettiUtente().subscribe(soggettoCollettivoes => this.soggettoCollettivoes = soggettoCollettivoes);
+    }
+    
+    submit(progetto : Progetto) : void {
+      this.pgService.create(progetto).subscribe(response => {
+        this.router.navigate(['/']);
+     });
+    }
   
 }

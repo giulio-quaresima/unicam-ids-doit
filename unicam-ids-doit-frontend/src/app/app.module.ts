@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -23,6 +23,7 @@ import { NotFoundComponent } from './components/http/not-found/not-found.compone
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

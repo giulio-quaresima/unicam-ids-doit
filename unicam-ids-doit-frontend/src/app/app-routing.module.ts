@@ -8,7 +8,7 @@ import { ModificaProgettoComponent } from './components/modifica-progetto/modifi
 const routes: Routes = [
   { path : "", component : HomeComponent},
   { path : "crea-progetto", component : CreaProgettoComponent},
-  { path : "modifica-progetto/:id", component : ModificaProgettoComponent},
+  { path : "modifica-progetto/:url", component : ModificaProgettoComponent},
   { path : "**", component : NotFoundComponent}
 ];
 

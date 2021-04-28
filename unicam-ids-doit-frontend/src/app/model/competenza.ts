@@ -10,5 +10,5 @@ export interface Competenzas extends HateoasResource {
 }
 
 interface Embedded {
-    Competenzas : Competenza[]
+    competenzas : Competenza[]
 }

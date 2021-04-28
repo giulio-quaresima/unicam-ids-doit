@@ -7,6 +7,9 @@ export interface Progetto extends HateoasResource {
     titolo : string;
     descrizione : string;
     obiettivi : string;
+
+    competenze : any[];
+    competenzeTags : string[];
     
     owner : Object;
     ownerAsync : Observable<SoggettoCollettivo>;

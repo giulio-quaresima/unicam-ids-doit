@@ -1,1 +1,33 @@
-<p>Progetto con id {{id}}</p>
+<form #myForm="ngForm">
+
+    <h2>{{progetto.titolo}}</h2>
+    
+	<div class="form-group">
+		<label>La descrizione del progetto</label>
+		<textarea [(ngModel)]="progetto.descrizione" class="form-control" name="descrizione" required></textarea>
+	</div>
+	
+	<div class="form-group">
+		<label>Gli obiettivi del progetto</label>
+		<textarea [(ngModel)]="progetto.obiettivi" class="form-control" name="obiettivi" required></textarea>
+	</div>
+    
+    <div class="form-group">
+        <label>Competenze tags</label>
+        <div *ngFor="let tag of progetto.competenzeTags; let i = index">
+            <div class="input-group mt-3">
+                <input type="text" class="form-control" [ngModel]="tag" name="{{tag}}" readonly>
+                <button class="btn btn-outline-danger" type="button" (click)="delTag(i)">Rimuovi</button>
+            </div>
+        </div>
+        <div class="input-group mt-3">
+            <input type="text" class="form-control" [(ngModel)]="newTag" name="newTag" required>
+            <button class="btn btn-outline-success" type="button" (click)="addTag()">Aggiungi</button>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-outline-success" type="button" (click)="submit()">Salva</button>
+    </div>
+
+</form>

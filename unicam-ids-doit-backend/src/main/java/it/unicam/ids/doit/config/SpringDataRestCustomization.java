@@ -5,6 +5,8 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
+import it.unicam.ids.doit.model.Progetto;
+
 @Component
 public class SpringDataRestCustomization implements RepositoryRestConfigurer
 {
@@ -14,6 +16,7 @@ public class SpringDataRestCustomization implements RepositoryRestConfigurer
 	{
 		RepositoryRestConfigurer.super.configureRepositoryRestConfiguration(config, cors);
 		cors.addMapping("/**").allowedOrigins("http://localhost:4200");
+		config.exposeIdsFor(Progetto.class);
 	}
 	
 }

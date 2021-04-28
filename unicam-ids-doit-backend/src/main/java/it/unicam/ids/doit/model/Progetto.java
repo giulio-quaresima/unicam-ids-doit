@@ -1,7 +1,10 @@
 package it.unicam.ids.doit.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -12,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.PostLoad;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.SortNatural;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -56,6 +61,15 @@ public class Progetto extends AbstractEntity<Progetto>
 	@JoinTable (name = "progetto_competenza")
 	@SortNatural
 	private SortedSet<Competenza> competenze = new TreeSet<Competenza>();
+	
+	@Transient
+	private List<String> competenzeTags = new ArrayList<String>();
+	
+	@PostLoad
+	public void postLoad()
+	{
+		this.competenzeTags = competenze.stream().map(Competenza::getTag).collect(Collectors.toList());
+	}
 
 	public Stato getStato()
 	{
@@ -101,7 +115,16 @@ public class Progetto extends AbstractEntity<Progetto>
 	{
 		this.competenze = competenze;
 	}
-
+	
+	public List<String> getCompetenzeTags()
+	{
+		return this.competenzeTags;
+	}
+	public void setCompetenzeTags(List<String> competenzeTags)
+	{
+		this.competenzeTags = competenzeTags;
+	}
+	
 	public SoggettoCollettivo getOwner()
 	{
 		return owner;
