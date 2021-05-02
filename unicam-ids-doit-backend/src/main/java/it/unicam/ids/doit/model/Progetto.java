@@ -1,10 +1,8 @@
 package it.unicam.ids.doit.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
-import java.util.stream.Collectors;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,11 +13,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.PostLoad;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.SortNatural;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.util.StringUtils;
 
 /**
  * 
@@ -60,17 +57,8 @@ public class Progetto extends AbstractEntity<Progetto>
 	@ManyToMany
 	@JoinTable (name = "progetto_competenza")
 	@SortNatural
-	private SortedSet<Competenza> competenze = new TreeSet<Competenza>();
+	private SortedSet<Competenza> competenzas = new TreeSet<Competenza>();
 	
-	@Transient
-	private List<String> competenzeTags = new ArrayList<String>();
-	
-	@PostLoad
-	public void postLoad()
-	{
-		this.competenzeTags = competenze.stream().map(Competenza::getTag).collect(Collectors.toList());
-	}
-
 	public Stato getStato()
 	{
 		return stato;
@@ -107,22 +95,13 @@ public class Progetto extends AbstractEntity<Progetto>
 		this.obiettivi = obiettivi;
 	}
 
-	public SortedSet<Competenza> getCompetenze()
+	public SortedSet<Competenza> getCompetenzas()
 	{
-		return competenze;
+		return competenzas;
 	}
-	public void setCompetenze(SortedSet<Competenza> competenze)
+	public void setCompetenzas(SortedSet<Competenza> competenzas)
 	{
-		this.competenze = competenze;
-	}
-	
-	public List<String> getCompetenzeTags()
-	{
-		return this.competenzeTags;
-	}
-	public void setCompetenzeTags(List<String> competenzeTags)
-	{
-		this.competenzeTags = competenzeTags;
+		this.competenzas = competenzas;
 	}
 	
 	public SoggettoCollettivo getOwner()
@@ -138,6 +117,22 @@ public class Progetto extends AbstractEntity<Progetto>
 	protected Class<Progetto> entityType()
 	{
 		return Progetto.class;
+	}
+	
+	public void removeCompetenza(String tag)
+	{
+		if (StringUtils.hasText(tag))
+		{
+			Iterator<Competenza> iterator = getCompetenzas().iterator();
+			while (iterator.hasNext())
+			{
+				Competenza competenza = iterator.next();
+				if (tag.equals(competenza.getTag()))
+				{
+					iterator.remove();
+				}
+			}
+		}
 	}
 
 }

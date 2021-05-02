@@ -2,11 +2,11 @@
     <a routerLink="/crea-progetto" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Crea nuovo progetto</a>
 </div>
 
-<div *ngFor="let progetto of progettoes._embedded.progettoes" class="card mt-3">
-    <h5 class="card-header">{{(progetto.ownerAsync | async)?.denominazione}}</h5>
+<div *ngFor="let progetto of progettoes" class="card mt-3">
+    <h5 class="card-header">{{progetto.owner.denominazione}}</h5>
     <div class="card-body">
       <h5 class="card-title">{{progetto.titolo}}</h5>
       <p class="card-text">{{progetto.descrizione}}</p>
-      <a [routerLink]="['/modifica-progetto',progetto._links.self.href]" class="btn btn-primary">Modifica</a>
+      <a [routerLink]="['/modifica-progetto',progetto.id]" class="btn btn-primary">Modifica</a>
     </div>
 </div>

@@ -3,7 +3,7 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Progetto } from '../../model/progetto';
-import { SoggettoCollettivo, SoggettoCollettivoes } from '../../model/soggetto-collettivo';
+import { SoggettoCollettivo } from '../../model/soggetto-collettivo';
 import { ProgettoService } from '../../services/progetto.service';
 import { SoggettoCollettivoService } from '../../services/soggetto-collettivo.service';
 
@@ -14,7 +14,7 @@ import { SoggettoCollettivoService } from '../../services/soggetto-collettivo.se
 })
 export class CreaProgettoComponent implements OnInit {
 
-  soggettoCollettivoes : SoggettoCollettivoes = <SoggettoCollettivoes>{};
+  soggettoCollettivoes : SoggettoCollettivo[] = [];
 	
 	creaProgettoForm = this.formBuilder.group({
 		owner : [''],
@@ -26,16 +26,16 @@ export class CreaProgettoComponent implements OnInit {
   constructor(
     private formBuilder : FormBuilder, 
     private router : Router,
-    private pgService : ProgettoService,
-    private sgService : SoggettoCollettivoService
+    private progettoService : ProgettoService,
+    private soggettoService : SoggettoCollettivoService
     ) { }
 
     ngOnInit() : void {
-      this.sgService.getSoggettiUtente().subscribe(soggettoCollettivoes => this.soggettoCollettivoes = soggettoCollettivoes);
+      this.soggettoService.getSoggettiUtente().subscribe(soggettoCollettivoes => this.soggettoCollettivoes = soggettoCollettivoes);
     }
     
     submit(progetto : Progetto) : void {
-      this.pgService.create(progetto).subscribe(response => {
+      this.progettoService.create(progetto).subscribe(response => {
         this.router.navigate(['/']);
      });
     }

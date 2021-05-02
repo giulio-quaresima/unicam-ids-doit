@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { SoggettoCollettivo, SoggettoCollettivoes } from '../model/soggetto-collettivo';
+import { SoggettoCollettivo } from '../model/soggetto-collettivo';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -9,10 +9,10 @@ import { environment } from '../../environments/environment';
 })
 export class SoggettoCollettivoService {
 
-  private url = environment.api.baseUrl + "/soggettoCollettivoes";
+  private url = environment.api.baseUrl + "/custom/soggettoCollettivoes";
 
-  getSoggettiUtente() : Observable<SoggettoCollettivoes> {
-    return this.http.get<SoggettoCollettivoes>(this.url);
+  getSoggettiUtente() : Observable<SoggettoCollettivo[]> {
+    return this.http.get<SoggettoCollettivo[]>(this.url);
   };
 
   constructor(private http: HttpClient) { }

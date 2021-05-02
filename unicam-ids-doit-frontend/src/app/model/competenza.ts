@@ -1,14 +1,5 @@
-import { Observable } from 'rxjs';
-import { HateoasResource } from './hateoas-resource';
+import { AbstractEntity } from "./abstract-entity";
 
-export interface Competenza extends HateoasResource {
+export interface Competenza extends AbstractEntity {
     tag : string;
-}
-
-export interface Competenzas extends HateoasResource {
-    _embedded : Embedded
-}
-
-interface Embedded {
-    competenzas : Competenza[]
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GenericService } from '../../services/generic.service';
-import { Progetto, Progettoes } from '../../model/progetto';
+import { Progetto } from '../../model/progetto';
 import { ProgettoService } from '../../services/progetto.service';
 import { Observable } from 'rxjs';
 import { SoggettoCollettivo } from 'src/app/model/soggetto-collettivo';
@@ -12,15 +12,12 @@ import { SoggettoCollettivo } from 'src/app/model/soggetto-collettivo';
 })
 export class HomeComponent implements OnInit {
 
-  progettoes : Progettoes = <Progettoes>{};
+  progettoes : Progetto[] = [];
 
   constructor(private genericService : GenericService, private progettoService : ProgettoService) {}
 
   ngOnInit(): void {
     this.progettoService.findAll().subscribe(progettoes => {
-      for (let progetto of progettoes._embedded.progettoes) {
-        progetto.ownerAsync = this.genericService.getAny(progetto._links["owner"].href);
-      }
       this.progettoes = progettoes;
     });
   }

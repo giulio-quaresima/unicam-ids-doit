@@ -90,7 +90,7 @@
     	
     	<insert tableName="progetto_competenza">
     		<column name="progetto_id" valueComputed="IDENTITY()"/>    		
-    		<column name="competenze_id" valueComputed="SELECT id FROM competenza WHERE tag = 'java'"/>    		
+    		<column name="competenzas_id" valueComputed="SELECT id FROM competenza WHERE tag = 'java'"/>    		
     	</insert>
     	
     </changeSet>

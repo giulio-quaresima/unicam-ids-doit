@@ -15,8 +15,10 @@ public class SpringDataRestCustomization implements RepositoryRestConfigurer
 	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors)
 	{
 		RepositoryRestConfigurer.super.configureRepositoryRestConfiguration(config, cors);
-		cors.addMapping("/**").allowedOrigins("http://localhost:4200");
-		config.exposeIdsFor(Progetto.class);
+		cors.addMapping("/**").allowedOrigins(Constants.CORS_ALLOWED_ORIGIN);
+		config
+			.setBasePath(Constants.SPRING_DATA_REST_API_BASE_PATH)
+			.exposeIdsFor(Progetto.class);
 	}
 	
 }

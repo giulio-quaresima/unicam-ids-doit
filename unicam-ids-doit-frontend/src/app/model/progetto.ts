@@ -1,24 +1,15 @@
-import { Observable } from 'rxjs';
-import { HateoasResource } from './hateoas-resource';
-import { SoggettoCollettivo } from './soggetto-collettivo';
+import { AbstractEntity } from "./abstract-entity";
+import { Competenza } from "./competenza";
+import { SoggettoCollettivo } from "./soggetto-collettivo";
 
-export interface Progetto extends HateoasResource {
+export interface Progetto extends AbstractEntity {
     stato : string;
     titolo : string;
     descrizione : string;
     obiettivi : string;
 
-    competenze : any[];
-    competenzeTags : string[];
-    
-    owner : Object;
-    ownerAsync : Observable<SoggettoCollettivo>;
+    competenzas : Competenza[];
+
+    owner : SoggettoCollettivo;
 }
 
-export interface Progettoes extends HateoasResource {
-    _embedded : Embedded
-}
-
-interface Embedded {
-    progettoes : Progetto[]
-}

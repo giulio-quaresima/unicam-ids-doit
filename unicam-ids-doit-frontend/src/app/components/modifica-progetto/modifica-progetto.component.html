@@ -14,10 +14,10 @@
     
     <div class="form-group">
         <label>Competenze tags</label>
-        <div *ngFor="let tag of progetto.competenzeTags; let i = index">
+        <div *ngFor="let competenza of progetto.competenzas">
             <div class="input-group mt-3">
-                <input type="text" class="form-control" [ngModel]="tag" name="{{tag}}" readonly>
-                <button class="btn btn-outline-danger" type="button" (click)="delTag(i)">Rimuovi</button>
+                <input type="text" class="form-control" name="{{competenza.tag}}" value="{{competenza.tag}}" readonly>
+                <button class="btn btn-outline-danger" type="button" (click)="delTag(competenza.tag)">Rimuovi</button>
             </div>
         </div>
         <div class="input-group mt-3">
