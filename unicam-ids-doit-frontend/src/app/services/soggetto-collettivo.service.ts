@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class SoggettoCollettivoService {
 
-  private url = environment.api.baseUrl + "/custom/soggettoCollettivoes";
+  private url = environment.api.baseUrl + "/custom/soggettoCollettivoes/currentUser";
 
   getSoggettiUtente() : Observable<SoggettoCollettivo[]> {
     return this.http.get<SoggettoCollettivo[]>(this.url);

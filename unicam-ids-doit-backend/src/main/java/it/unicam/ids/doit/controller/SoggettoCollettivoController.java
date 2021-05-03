@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.unicam.ids.doit.config.Constants;
 import it.unicam.ids.doit.model.Appartenenza;
 import it.unicam.ids.doit.model.SoggettoCollettivo;
 import it.unicam.ids.doit.model.SoggettoUtente;
@@ -22,11 +23,13 @@ import it.unicam.ids.doit.repo.SoggettoCollettivoRepository;
 import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
 
 @RestController
-@RequestMapping ("/SoggettoCollettivo")
+@RequestMapping (Constants.CUSTOM_REST_API_BASE_PATH + SoggettoCollettivoController.BASE_PATH)
 // @Secured (value = "ROLE_USER")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = Constants.CORS_ALLOWED_ORIGIN)
 public class SoggettoCollettivoController
 {
+	public static final String BASE_PATH = "/soggettoCollettivoes";
+
 	private boolean fastPrototyping = true;
 	
 	@Autowired
