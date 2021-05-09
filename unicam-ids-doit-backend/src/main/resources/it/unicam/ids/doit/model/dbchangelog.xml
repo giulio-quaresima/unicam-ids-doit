@@ -123,6 +123,11 @@
     		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Università di Camerino'"/>
     	</insert>
     	
+    	<insert tableName="appartenenza_autorizzazioni">
+    		<column name="appartenenza_id" valueComputed="IDENTITY()"/>
+    		<column name="autorizzazioni" value="GESTIONE_PROGETTO"/>
+    	</insert>
+    	
     	<insert tableName="appartenenza">
     		<column name="membro" valueComputed="SELECT id FROM account WHERE username = 'giulio'"/>
     		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Università di Perugia'"/>

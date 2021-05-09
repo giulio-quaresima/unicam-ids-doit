@@ -12,14 +12,10 @@ import { SoggettoCollettivo } from 'src/app/model/soggetto-collettivo';
 })
 export class HomeComponent implements OnInit {
 
-  progettoes : Progetto[] = [];
-
-  constructor(private genericService : GenericService, private progettoService : ProgettoService) {}
+  constructor(private genericService : GenericService, public progettoService : ProgettoService) {}
 
   ngOnInit(): void {
-    this.progettoService.findAll().subscribe(progettoes => {
-      this.progettoes = progettoes;
-    });
+    this.progettoService.reload();
   }
 
 }

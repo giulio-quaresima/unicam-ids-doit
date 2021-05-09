@@ -11,11 +11,12 @@ import { environment } from '../../environments/environment';
 export class ProgettoService {
 
   private url = environment.api.baseUrl + "/custom/progettoes";
+  progettiVisibili : Progetto[] = [];
 
   constructor(private http: HttpClient) { }
 
-  findAll() : Observable<Progetto[]> {
-    return this.http.get<Progetto[]>(this.url);
+  reload() : void {
+    this.http.get<Progetto[]>(this.url).subscribe(progettoes => {console.log(progettoes); this.progettiVisibili = progettoes;});
   }
 
   find(id : number) : Observable<any> {

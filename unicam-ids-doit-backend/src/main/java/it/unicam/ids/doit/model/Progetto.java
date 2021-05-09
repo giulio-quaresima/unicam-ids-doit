@@ -1,5 +1,6 @@
 package it.unicam.ids.doit.model;
 
+import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -111,6 +112,22 @@ public class Progetto extends AbstractEntity<Progetto>
 	public void setOwner(SoggettoCollettivo owner)
 	{
 		this.owner = owner;
+	}
+	
+	/**
+	 * Per il significato vedi {@link #isVisibilePubblicamente()}.
+	 */
+	public static final EnumSet<Stato> STATI_VISIBILI_PUBBLICAMENTE = 
+			EnumSet.of(Stato.PUBBLICATO, Stato.CANDIDATURE_IN_VALUTAZIONE, Stato.IN_REALIZZAZIONE, Stato.REALIZZATO);
+	/**
+	 * @return <code>true</code> sse questo progetto è visibile pubblicamente, cioè
+	 * da qualsiasi utente, anche guest: in caso contrario, il progetto
+	 * dovrà essere visibile solo dal suo {@link #getOwner()} e da altri soggetti
+	 * eventualmente individuati dall'owner stesso.
+	 */
+	public boolean isVisibilePubblicamente()
+	{
+		return STATI_VISIBILI_PUBBLICAMENTE.contains(getStato());
 	}
 
 	@Override

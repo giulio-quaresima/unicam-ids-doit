@@ -14,6 +14,8 @@ import javax.persistence.SecondaryTable;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import it.unicam.ids.doit.model.Appartenenza.Autorizzazione;
+
 @Entity
 @DiscriminatorValue (value = "U")
 @SecondaryTable (name = SoggettoUtente.SECONDARY_TABLE)
@@ -68,6 +70,20 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 	public void setAppartenenze(Set<Appartenenza> appartenenze)
 	{
 		this.appartenenze = appartenenze;
+	}
+	
+	public boolean has(Autorizzazione autorizzazione, SoggettoCollettivo soggettoCollettivo)
+	{
+		if (soggettoCollettivo != null && autorizzazione != null)
+		{
+			return getAppartenenze()
+					.stream()
+					.filter(appartenenza -> appartenenza.getAutorizzazioni().contains(autorizzazione))
+					.map(Appartenenza::getOrganizzazione)
+					.anyMatch(s -> soggettoCollettivo.equals(s))
+					;
+		}
+		return false;
 	}
 	
 	@Override

@@ -1,7 +1,10 @@
 package it.unicam.ids.doit.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -16,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.unicam.ids.doit.config.Constants;
+import it.unicam.ids.doit.model.Appartenenza.Autorizzazione;
 import it.unicam.ids.doit.model.Progetto;
 import it.unicam.ids.doit.model.Progetto.Stato;
+import it.unicam.ids.doit.model.SoggettoUtente;
 import it.unicam.ids.doit.repo.ProgettoRepository;
+import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
 import it.unicam.ids.doit.service.CompetenzaService;
 
 @RestController
@@ -34,10 +40,30 @@ public class ProgettoController
 	@Autowired
 	private ProgettoRepository progettoRepository;
 	
+	@Autowired
+	private SoggettoUtenteRepository soggettoUtenteRepository;
+	
 	@GetMapping 
-	public List<Progetto> get()
+	public List<Progetto> get(Principal principal)
 	{
-		return progettoRepository.findAll();
+		Predicate<Progetto> predicate = Progetto::isVisibilePubblicamente;
+		System.out.println(principal);
+		if (principal != null)
+		{
+			System.out.println(principal.getName());
+			SoggettoUtente utenteAutenticato = soggettoUtenteRepository.findOneByAccountUsername(principal.getName());
+			if (utenteAutenticato != null)
+			{
+				System.out.println(utenteAutenticato.getCognome());
+				predicate = predicate.or(progetto -> {
+					System.out.println(progetto.getTitolo());
+					System.out.println(progetto.getOwner().getDenominazione());
+					System.out.println(utenteAutenticato.getAppartenenze());
+					return utenteAutenticato.has(Autorizzazione.GESTIONE_PROGETTO, progetto.getOwner());
+					});
+			}
+		}
+		return progettoRepository.findAll().stream().filter(predicate).collect(Collectors.toList());
 	}
 	
 	@PostMapping
