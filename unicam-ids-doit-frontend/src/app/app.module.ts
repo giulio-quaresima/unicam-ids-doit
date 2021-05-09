@@ -11,6 +11,7 @@ import { CreaProgettoComponent } from './components/crea-progetto/crea-progetto.
 import { HomeComponent } from './components/home/home.component';
 import { ModificaProgettoComponent } from './components/modifica-progetto/modifica-progetto.component';
 import { NotFoundComponent } from './components/http/not-found/not-found.component';
+import { GestisciCandidaturaComponent } from './components/gestisci-candidatura/gestisci-candidatura.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NotFoundComponent } from './components/http/not-found/not-found.compone
     CreaProgettoComponent,
     HomeComponent,
     ModificaProgettoComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    GestisciCandidaturaComponent
   ],
   imports: [
     BrowserModule,

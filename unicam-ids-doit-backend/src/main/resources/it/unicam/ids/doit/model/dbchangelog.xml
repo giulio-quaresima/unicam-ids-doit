@@ -32,6 +32,57 @@
     	</insert>
     	
     	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>
+    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Daneel</column>
+    		<column name="cognome">Olivaw</column>
+<!--     		<column name="password"></column> -->
+    	</insert>
+    	
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">rdaneel</column>
+    		<column name="email">r.daneel.olivaw@example.org</column>
+    	</insert>
+    	
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>
+    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Neri</column>
+    		<column name="cognome">Marcorè</column>
+<!--     		<column name="password"></column> -->
+    	</insert>
+    	
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">neri</column>
+    		<column name="email">neri@example.org</column>
+    	</insert>
+    	
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>
+    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Gentile I</column>
+    		<column name="cognome">da Varano</column>
+<!--     		<column name="password"></column> -->
+    	</insert>
+    	
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">varano</column>
+    		<column name="email">gentile.varano@example.org</column>
+    	</insert>
+    	
+    	<insert tableName="soggetto">
     		<column name="discriminator_column" value="C"/>
     	</insert>
     
@@ -75,6 +126,21 @@
     	<insert tableName="appartenenza">
     		<column name="membro" valueComputed="SELECT id FROM account WHERE username = 'giulio'"/>
     		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Università di Perugia'"/>
+    	</insert>
+    	
+    	<insert tableName="appartenenza">
+    		<column name="membro" valueComputed="SELECT id FROM account WHERE username = 'rdaneel'"/>
+    		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Università di Camerino'"/>
+    	</insert>
+    	
+    	<insert tableName="appartenenza">
+    		<column name="membro" valueComputed="SELECT id FROM account WHERE username = 'neri'"/>
+    		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Regione Marche'"/>
+    	</insert>
+    	
+    	<insert tableName="appartenenza">
+    		<column name="membro" valueComputed="SELECT id FROM account WHERE username = 'varano'"/>
+    		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Comune di Camerino'"/>
     	</insert>
     	
     	<insert tableName="competenza">

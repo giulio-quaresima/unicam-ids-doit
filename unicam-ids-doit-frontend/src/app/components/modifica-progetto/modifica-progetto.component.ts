@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Progetto } from '../../model/progetto';
 import { GenericService } from '../../services/generic.service'
 import { CompetenzeService } from '../../services/competenze.service';
@@ -22,6 +22,7 @@ export class ModificaProgettoComponent implements OnInit {
 	
   constructor(
     private route : ActivatedRoute,
+    private router : Router,
     private genericService : GenericService,
     private progettoService : ProgettoService,
     private cService : CompetenzeService) { }
@@ -51,6 +52,7 @@ export class ModificaProgettoComponent implements OnInit {
     console.log(this.progetto);
     this.progettoService.save(this.progetto).subscribe(result => {
       console.log(result);
+      this.router.navigate(['/']);
     });
   }
 

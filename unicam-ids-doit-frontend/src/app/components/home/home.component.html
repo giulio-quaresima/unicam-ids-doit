@@ -6,7 +6,13 @@
     <h5 class="card-header">{{progetto.owner.denominazione}}</h5>
     <div class="card-body">
       <h5 class="card-title">{{progetto.titolo}}</h5>
+      <p class="card-text">
+        <span *ngFor="let competenza of progetto.competenzas" class="badge rounded-pill bg-info mx-1">{{competenza.tag}}</span>
+      </p>
+      <h5 class="card-title">Descrizione</h5>
       <p class="card-text">{{progetto.descrizione}}</p>
+      <h5 class="card-title">Obiettivi</h5>
+      <p class="card-text">{{progetto.obiettivi}}</p>
       <a [routerLink]="['/modifica-progetto',progetto.id]" class="btn btn-primary">Modifica</a>
     </div>
 </div>

@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.SecondaryTable;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @DiscriminatorValue (value = "U")
 @SecondaryTable (name = SoggettoUtente.SECONDARY_TABLE)
@@ -29,6 +31,7 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 	private Account account;
 		
 	@OneToMany (mappedBy = "membro")
+	@JsonManagedReference
 	private Set<Appartenenza> appartenenze = new HashSet<Appartenenza>();
 
 	public String getCognome()

@@ -16,11 +16,9 @@
         <form class="d-flex">
             <div class="input-group mb-3">
                 <label class="input-group-text" for="inputGroupSelect01">Scegli un utente</label>
-                <select class="form-select" id="inputGroupSelect01">
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                <select ([ngModel])="username" (ngModelChange)="login()" class="form-select" id="inputGroupSelect01" >
+                  <option selected [ngValue]="">-- Guest --</option>
+                  <option *ngFor="let user of users" [ngValue]="{{user.account.username}}">{{user.nome}} {{user.cognome}}</option>
                 </select>
             </div>
         </form>

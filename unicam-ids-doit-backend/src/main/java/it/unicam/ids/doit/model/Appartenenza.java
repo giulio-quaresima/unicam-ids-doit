@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * 
  * 
@@ -29,6 +31,7 @@ public class Appartenenza extends AbstractEntity<Appartenenza>
 	
 	@ManyToOne
 	@JoinColumn (name = UTENTE_COLUMN_NAME)
+	@JsonBackReference
 	private SoggettoUtente membro;
 
 	@ManyToOne
