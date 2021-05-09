@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand fw-bold" routerLink="">{{title}}</a>
+        <button (click)="isCollapsed = !isCollapsed" class="navbar-toggler" type="button" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div [collapse]="isCollapsed" [isAnimated]="true" class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a routerLink="/crea-progetto" routerLinkActive="active" class="nav-link">Crea Progetto</a></li>
+                <li>AAA{{username}}{{authStatus?.utente?.nome}}</li>
+            </ul>
+        </div>
+
+        <form class="d-flex">
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Scegli un utente</label>
+                <select [(ngModel)]="username" name="username" class="form-select" id="inputGroupSelect01" >
+                  <option selected [value]="">-- Guest --</option>
+                  <option *ngFor="let user of users" [value]="user.account.username">{{user.nome}} {{user.cognome}}</option>
+                </select>
+            </div>
+        </form>
+
+    </div>
+
+</nav>

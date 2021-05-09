@@ -5,9 +5,6 @@ import { GenericService } from '../../services/generic.service'
 import { CompetenzeService } from '../../services/competenze.service';
 import { SoggettoCollettivo } from '../../model/soggetto-collettivo';
 import { ProgettoService } from '../../services/progetto.service';
-import { SoggettoCollettivoService } from '../../services/soggetto-collettivo.service';
-import { Competenza } from 'src/app/model/competenza';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-modifica-progetto',

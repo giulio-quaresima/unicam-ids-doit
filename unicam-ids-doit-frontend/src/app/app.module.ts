@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ModificaProgettoComponent } from './components/modifica-progetto/modifica-progetto.component';
 import { NotFoundComponent } from './components/http/not-found/not-found.component';
 import { GestisciCandidaturaComponent } from './components/gestisci-candidatura/gestisci-candidatura.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { GestisciCandidaturaComponent } from './components/gestisci-candidatura/
     HomeComponent,
     ModificaProgettoComponent,
     NotFoundComponent,
-    GestisciCandidaturaComponent
+    GestisciCandidaturaComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
