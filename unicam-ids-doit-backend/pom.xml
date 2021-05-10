@@ -13,7 +13,7 @@
 
 	<groupId>it.unicam.ids.doit</groupId>
 	<artifactId>unicam-ids-doit-backend</artifactId>
-	<version>0.4-SNAPSHOT</version>
+	<version>0.4</version>
 
 	<description>
 	</description>
