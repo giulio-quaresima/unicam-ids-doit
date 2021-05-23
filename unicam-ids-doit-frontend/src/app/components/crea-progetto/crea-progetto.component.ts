@@ -33,7 +33,7 @@ export class CreaProgettoComponent implements OnInit {
     ) { }
 
     ngOnInit() : void {
-      this.soggettoService.getSoggettiUtente().subscribe(soggettoCollettivoes => {
+      this.soggettoService.getSoggettiUtente("GESTIONE_PROGETTO").subscribe(soggettoCollettivoes => {
         this.soggettoCollettivoes = soggettoCollettivoes;
         if (soggettoCollettivoes.length == 1) {
           this.creaProgettoForm.get("owner.id")?.setValue(soggettoCollettivoes[0].id);
@@ -42,7 +42,9 @@ export class CreaProgettoComponent implements OnInit {
     }
     
     submit(progetto : Progetto) : void {
+      console.log(progetto);
       this.progettoService.create(progetto).subscribe(response => {
+        console.log(response);
         this.router.navigate(['/']);
      });
     }

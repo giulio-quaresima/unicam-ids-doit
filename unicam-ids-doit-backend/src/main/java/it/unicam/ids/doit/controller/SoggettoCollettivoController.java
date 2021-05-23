@@ -19,6 +19,7 @@ import it.unicam.ids.doit.config.Constants;
 import it.unicam.ids.doit.model.Appartenenza;
 import it.unicam.ids.doit.model.SoggettoCollettivo;
 import it.unicam.ids.doit.model.SoggettoUtente;
+import it.unicam.ids.doit.model.Appartenenza.Autorizzazione;
 import it.unicam.ids.doit.repo.SoggettoCollettivoRepository;
 import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
 
@@ -44,26 +45,21 @@ public class SoggettoCollettivoController
 		return soggettoCollettivoRepository.findAll();
 	}
 	
-	@GetMapping ("/currentUser")
-	public SortedSet<SoggettoCollettivo> soggettiUtente(Principal principal)
+	@GetMapping ("/currentUser/autorizzazione/{autorizzazione}")
+	public SortedSet<SoggettoCollettivo> soggettiUtente(Principal principal, @PathVariable Autorizzazione autorizzazione)
 	{
-		SoggettoUtente utente = null;
 		if (principal != null)
 		{
-			utente = utenteRepository.findOneByAccountUsername(principal.getName());
+			SoggettoUtente utente = utenteRepository.findOneByAccountUsername(principal.getName());
 			Assert.notNull(utente, "Un utente autenticato dev'essere presente nel DB!");
-			return utente.getAppartenenze().stream().map(Appartenenza::getOrganizzazione).collect(Collectors.toCollection(TreeSet::new));
+			return utente
+					.getAppartenenze()
+					.stream()
+					.filter(appartenenza -> appartenenza.getAutorizzazioni().contains(autorizzazione))
+					.map(Appartenenza::getOrganizzazione)
+					.collect(Collectors.toCollection(TreeSet::new));
 		}
-		else if (fastPrototyping)
-		{
-			return soggettiUtente(new Principal() {
-				@Override
-				public String getName()
-				{
-					return "giulio";
-				}
-			});
-		}
+
 		return Collections.emptySortedSet();
 	}
 	

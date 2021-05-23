@@ -14,7 +14,6 @@ import { ProgettoService } from '../../services/progetto.service';
 export class ModificaProgettoComponent implements OnInit {
 
   progetto : Progetto = <Progetto>{};
-  soggettoCollettivoes : SoggettoCollettivo[] = [];
   newTag : string = '';
 	
   constructor(
@@ -51,6 +50,11 @@ export class ModificaProgettoComponent implements OnInit {
       console.log(result);
       this.router.navigate(['/']);
     });
+  }
+
+  pubblica() : void {
+    this.progetto.stato = "PUBBLICATO";
+    this.submit();
   }
 
 }

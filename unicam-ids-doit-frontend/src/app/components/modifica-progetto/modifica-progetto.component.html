@@ -3,7 +3,7 @@
     <h2>{{progetto.titolo}}</h2>
     
 	<div class="form-group">
-		<label>Il titolo del progetto</label>
+		<label>Il titolo del progetto {{progetto.titolo}}</label>
 		<input type="text" [(ngModel)]="progetto.titolo" class="form-control" name="titolo" required/>
 	</div>
 	
@@ -31,8 +31,9 @@
         </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group mt-3">
         <button class="btn btn-outline-success" type="submit" (click)="submit()">Salva</button>
+        <button *ngIf="progetto.stato === 'IN_MODIFICA'" class="btn btn-outline-danger ms-3" type="submit" (click)="pubblica()">Pubblica progetto</button>
     </div>
 
 </form>

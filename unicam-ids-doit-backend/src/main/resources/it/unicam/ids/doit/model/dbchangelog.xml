@@ -133,19 +133,44 @@
     		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Università di Perugia'"/>
     	</insert>
     	
+    	<insert tableName="appartenenza_autorizzazioni">
+    		<column name="appartenenza_id" valueComputed="IDENTITY()"/>
+    		<column name="autorizzazioni" value="GESTIONE_PROGETTO"/>
+    	</insert>
+    	
+    	<insert tableName="appartenenza_autorizzazioni">
+    		<column name="appartenenza_id" valueComputed="IDENTITY()"/>
+    		<column name="autorizzazioni" value="CANDIDATURA"/>
+    	</insert>
+    	
     	<insert tableName="appartenenza">
     		<column name="membro" valueComputed="SELECT id FROM account WHERE username = 'rdaneel'"/>
     		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Università di Camerino'"/>
     	</insert>
     	
+    	<insert tableName="appartenenza_autorizzazioni">
+    		<column name="appartenenza_id" valueComputed="IDENTITY()"/>
+    		<column name="autorizzazioni" value="CANDIDATURA"/>
+    	</insert>
+    	    	
     	<insert tableName="appartenenza">
     		<column name="membro" valueComputed="SELECT id FROM account WHERE username = 'neri'"/>
     		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Regione Marche'"/>
     	</insert>
     	
+    	<insert tableName="appartenenza_autorizzazioni">
+    		<column name="appartenenza_id" valueComputed="IDENTITY()"/>
+    		<column name="autorizzazioni" value="CANDIDATURA"/>
+    	</insert>
+    	
     	<insert tableName="appartenenza">
     		<column name="membro" valueComputed="SELECT id FROM account WHERE username = 'varano'"/>
     		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Comune di Camerino'"/>
+    	</insert>
+    	
+    	<insert tableName="appartenenza_autorizzazioni">
+    		<column name="appartenenza_id" valueComputed="IDENTITY()"/>
+    		<column name="autorizzazioni" value="GESTIONE_PROGETTO"/>
     	</insert>
     	
     	<insert tableName="competenza">
@@ -157,6 +182,7 @@
     		<column name="descrizione" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
     		<column name="obiettivi" value="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
     		<column name="owner_id" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Università di Camerino'"/>
+    		<column name="stato" value="IN_MODIFICA"/>
     	</insert>
     	
     	<insert tableName="progetto_competenza">

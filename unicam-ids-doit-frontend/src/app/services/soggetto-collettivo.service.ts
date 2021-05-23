@@ -9,10 +9,10 @@ import { environment } from '../../environments/environment';
 })
 export class SoggettoCollettivoService {
 
-  private url = environment.api.baseUrl + "/custom/soggettoCollettivoes/currentUser";
+  private baseUrl = environment.api.baseUrl + "/custom/soggettoCollettivoes";
 
-  getSoggettiUtente() : Observable<SoggettoCollettivo[]> {
-    return this.http.get<SoggettoCollettivo[]>(this.url);
+  getSoggettiUtente(autorizzazione : string) : Observable<SoggettoCollettivo[]> {
+    return this.http.get<SoggettoCollettivo[]>(this.baseUrl + "/currentUser/autorizzazione/" + autorizzazione);
   };
 
   constructor(private http: HttpClient) { }

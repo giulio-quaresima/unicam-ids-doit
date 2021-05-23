@@ -47,18 +47,12 @@ public class ProgettoController
 	public List<Progetto> get(Principal principal)
 	{
 		Predicate<Progetto> predicate = Progetto::isVisibilePubblicamente;
-		System.out.println(principal);
 		if (principal != null)
 		{
-			System.out.println(principal.getName());
 			SoggettoUtente utenteAutenticato = soggettoUtenteRepository.findOneByAccountUsername(principal.getName());
 			if (utenteAutenticato != null)
 			{
-				System.out.println(utenteAutenticato.getCognome());
 				predicate = predicate.or(progetto -> {
-					System.out.println(progetto.getTitolo());
-					System.out.println(progetto.getOwner().getDenominazione());
-					System.out.println(utenteAutenticato.getAppartenenze());
 					return utenteAutenticato.has(Autorizzazione.GESTIONE_PROGETTO, progetto.getOwner());
 					});
 			}
@@ -69,20 +63,19 @@ public class ProgettoController
 	@PostMapping
 	public Progetto create(@RequestBody Progetto progetto)
 	{
+		progetto.setStato(Stato.IN_MODIFICA);
 		return progettoRepository.save(progetto);
 	}
 	
 	@GetMapping ("/{progetto:\\d}")
 	public Progetto get(Progetto progetto)
 	{
-		progetto.setStato(Stato.IN_MODIFICA);
 		return progetto;
 	}
 	
 	@PutMapping ("/{progetto:\\d}")
 	public Progetto save(@RequestBody Progetto progetto) throws IOException
 	{
-		progetto.setStato(Stato.IN_MODIFICA);
 		return progettoRepository.save(progetto);
 	}
 	
