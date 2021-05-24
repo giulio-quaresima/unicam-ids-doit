@@ -15,7 +15,10 @@ public class CandidatureController
 {
 	public static final String BASE_PATH = "/candidature";
 	
+	@SuppressWarnings("unused")
 	@Autowired
 	private CandidaturaRepository candidaturaRepository;
+	
+	 
 	
 }

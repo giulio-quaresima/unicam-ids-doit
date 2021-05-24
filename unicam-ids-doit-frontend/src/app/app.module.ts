@@ -13,6 +13,7 @@ import { ModificaProgettoComponent } from './components/modifica-progetto/modifi
 import { NotFoundComponent } from './components/http/not-found/not-found.component';
 import { GestisciCandidaturaComponent } from './components/gestisci-candidatura/gestisci-candidatura.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { GestisciCandidaturaProgettoComponent } from './components/gestisci-candidatura-progetto/gestisci-candidatura-progetto.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ModificaProgettoComponent,
     NotFoundComponent,
     GestisciCandidaturaComponent,
-    NavbarComponent
+    NavbarComponent,
+    GestisciCandidaturaProgettoComponent
   ],
   imports: [
     BrowserModule,

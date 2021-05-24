@@ -1,7 +1,9 @@
 package it.unicam.ids.doit.model;
 
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -54,6 +56,8 @@ public class Progetto extends AbstractEntity<Progetto>
 	
 	@ManyToOne (optional = false)
 	private SoggettoCollettivo owner;
+	
+	private Set<Candidatura> candidature = new HashSet<Candidatura>();
 
 	@ManyToMany
 	@JoinTable (name = "progetto_competenza")
@@ -114,6 +118,15 @@ public class Progetto extends AbstractEntity<Progetto>
 		this.owner = owner;
 	}
 	
+	public Set<Candidatura> getCandidature()
+	{
+		return candidature;
+	}
+	public void setCandidature(Set<Candidatura> candidature)
+	{
+		this.candidature = candidature;
+	}
+
 	/**
 	 * Per il significato vedi {@link #isVisibilePubblicamente()}.
 	 */
