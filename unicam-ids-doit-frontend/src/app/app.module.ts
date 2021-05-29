@@ -14,6 +14,7 @@ import { NotFoundComponent } from './components/http/not-found/not-found.compone
 import { GestisciCandidaturaComponent } from './components/gestisci-candidatura/gestisci-candidatura.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { GestisciCandidaturaProgettoComponent } from './components/gestisci-candidatura-progetto/gestisci-candidatura-progetto.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { GestisciCandidaturaProgettoComponent } from './components/gestisci-cand
     BrowserAnimationsModule,
     CollapseModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

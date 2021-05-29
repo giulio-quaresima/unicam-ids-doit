@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,21 +46,27 @@ public class AuthController
 	}
 	
 	@RequestMapping ("/login")
-	public Response<String> login(
+	public Response<AuthStatus> login(
 			@RequestParam ("username") String username,
 			@RequestParam ("password") String password)
 	{
-		// L'eccezione AuthenticationException viene gestita da ControllersAdvice
-		unsecurityFilter.setCurrentAuthentication(authenticationManager.authenticate(
-							new UsernamePasswordAuthenticationToken(username, password)));
-		return Response.of("authenticated");
+		try
+		{
+			unsecurityFilter.setCurrentAuthentication(authenticationManager.authenticate(
+								new UsernamePasswordAuthenticationToken(username, password)));
+			return Response.of(new AuthStatus(soggettoUtenteRepository.findOneByAccountUsername(username)));
+		}
+		catch (AuthenticationException e)
+		{
+			return Response.of(new AuthStatus(null));
+		}
 	}
 	
 	@RequestMapping ("/logout")
-	public Response<String> logout()
+	public Response<AuthStatus> logout()
 	{
 		unsecurityFilter.setCurrentAuthentication(null);		
-		return Response.of("logout successful");
+		return Response.of(new AuthStatus(null));
 	}
 	
 	/**

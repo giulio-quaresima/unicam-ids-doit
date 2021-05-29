@@ -15,38 +15,37 @@ export class NavbarComponent implements OnInit {
 
   title = 'DoIt';
   isCollapsed = true;
-  username = "";
+  username : string = "";
   users : SoggettoUtente[] = [];
-  authStatus : AuthStatus = <AuthStatus>{authenticated : false};
+  authStatus : AuthStatus = <AuthStatus>{};
 
-  constructor(
-    private router : Router,
-    private authService : AuthService, 
-    private progettoService : ProgettoService) { }
+  constructor(private router : Router, private authService : AuthService) { }
 
-  login(): void {
-    if (this.username) {
-      this.authService.authenticate(this.username, this.username).subscribe(result => {
-        this.router.navigate(['/']);
-        this.ngOnInit();
-      } );
-    } else {
-      this.authService.logout().subscribe(result => {
-        this.router.navigate(['/']);
-        this.ngOnInit();
+    ngOnInit(): void {
+      this.authService.authStatus.subscribe(this.authEventConsumer.bind(this)); // Non togliere bind!!!
+      if (this.users.length == 0) {
+        this.authService.getUsers().subscribe(response => this.users = response.data);
+      }
+      this.authService.getCurrentUser().subscribe(response => {
+        this.authEventConsumer(response.data);
       });
     }
-  }
-
-  ngOnInit(): void {
-    if (this.users.length == 0) {
-      this.authService.getUsers().subscribe(response => this.users = response.data);
+    
+    authEventConsumer(authStatus : AuthStatus) : void {
+      console.log("NavbarComponent.authEventConsumer");
+      console.log(authStatus);
+      console.log(this);
+      this.authStatus = authStatus;
+      this.username = authStatus.utente?.account?.username || "";
+      this.router.navigate(['/']);
     }
-    this.authService.getCurrentUser().subscribe(response => {
-      this.authStatus = response.data;
-      this.username = this.authStatus.utente?.account?.username;
-      this.progettoService.reload();
-    });
+  
+    login(): void {
+    if (this.username) {
+      this.authService.authenticate(this.username, this.username);
+    } else {
+      this.authService.logout();
+    }
   }
 
 }

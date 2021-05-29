@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.SortNatural;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -57,6 +58,7 @@ public class Progetto extends AbstractEntity<Progetto>
 	@ManyToOne (optional = false)
 	private SoggettoCollettivo owner;
 	
+	@OneToMany (mappedBy = "progetto")
 	private Set<Candidatura> candidature = new HashSet<Candidatura>();
 
 	@ManyToMany
