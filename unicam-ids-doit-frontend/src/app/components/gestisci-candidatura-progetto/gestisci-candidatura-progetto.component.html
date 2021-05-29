@@ -1,1 +1,17 @@
-<p>gestisci-candidatura-progetto works!</p>
+<form #myForm="ngForm" ngNativeValidate>
+
+    <h2>{{progetto.titolo}}</h2>
+    
+	<div class="form-group">
+		<label>Per conto di chi vuoi candidarti?</label>
+		<select name="soggettoCandidatura" [(ngModel)]="soggettoCandidatura" class="form-control" required="required">
+			<option value="-1">Per conto mio</option>
+			<option *ngFor="let soggetto of soggettoService.soggettiAutorizzazioneCandidatura" value="{{soggetto.id}}">Per conto di: "{{soggetto.denominazione}}"</option>
+		</select>
+	</div>
+
+    <div class="form-group mt-3">
+        <button class="btn btn-outline-success" type="submit" (click)="submit()">Càndidati</button>
+    </div>
+
+</form>

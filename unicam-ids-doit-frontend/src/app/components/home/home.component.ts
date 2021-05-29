@@ -7,6 +7,7 @@ import { SoggettoCollettivo } from 'src/app/model/soggetto-collettivo';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthStatus } from 'src/app/model/auth-status';
+import { SoggettoCollettivoService } from 'src/app/services/soggetto-collettivo.service';
 
 @Component({
   selector: 'app-home',
@@ -19,11 +20,10 @@ export class HomeComponent implements OnInit {
     private router : Router,
     private genericService : GenericService, 
     public progettoService : ProgettoService,
+    public soggettoService : SoggettoCollettivoService,
     private authService : AuthService) {}
 
   ngOnInit(): void {
-    console.log(this.authService == this.progettoService.authService);
-    console.log(this.authService === this.progettoService.authService);
     this.authService.authStatus.subscribe(this.authEventConsumer.bind(this)); // Non togliere bind!!!
     this.progettoService.reload();
   }

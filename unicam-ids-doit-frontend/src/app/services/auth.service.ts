@@ -4,6 +4,7 @@ import { EventEmitter, Injectable, OnInit, Output } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { AuthStatus } from '../model/auth-status';
 import { Response } from '../model/response';
+import { SoggettoCollettivo } from '../model/soggetto-collettivo';
 import { SoggettoUtente } from '../model/soggetto-utente';
 import { AbstractService } from './abstract-service';
 import { GenericService } from './generic.service';

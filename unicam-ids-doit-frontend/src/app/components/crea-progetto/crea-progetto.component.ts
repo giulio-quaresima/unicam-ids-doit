@@ -29,7 +29,7 @@ export class CreaProgettoComponent implements OnInit {
     private formBuilder : FormBuilder, 
     private router : Router,
     private progettoService : ProgettoService,
-    private soggettoService : SoggettoCollettivoService
+    public soggettoService : SoggettoCollettivoService
     ) { }
 
     ngOnInit() : void {

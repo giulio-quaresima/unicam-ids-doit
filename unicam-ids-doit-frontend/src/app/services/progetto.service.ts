@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 import { AuthStatus } from '../model/auth-status';
 import { AbstractService } from './abstract-service';
+import { SoggettoCollettivo } from '../model/soggetto-collettivo';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +17,12 @@ export class ProgettoService extends AbstractService {
   private url = environment.api.baseUrl + "/custom/progettoes";
   progettiVisibili : Progetto[] = [];
 
-  constructor(private http: HttpClient, @Inject(AuthService) public authService : AuthService) {
+  constructor(private http: HttpClient, private authService : AuthService) {
     super();
     this.authService.authStatus.subscribe(this.authEventConsumer.bind(this)); // Non togliere bind!!!
    }
 
   authEventConsumer(authStatus : AuthStatus) : void {
-    console.log("ProgettoService.authEventConsumer");
-    console.log(authStatus);
     this.reload();
   }
 
