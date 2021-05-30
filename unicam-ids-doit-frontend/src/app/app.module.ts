@@ -13,8 +13,8 @@ import { ModificaProgettoComponent } from './components/modifica-progetto/modifi
 import { NotFoundComponent } from './components/http/not-found/not-found.component';
 import { GestisciCandidaturaComponent } from './components/gestisci-candidatura/gestisci-candidatura.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { GestisciCandidaturaProgettoComponent } from './components/gestisci-candidatura-progetto/gestisci-candidatura-progetto.component';
 import { AuthService } from './services/auth.service';
+import { CreaCandidaturaProgettoComponent } from './components/crea-candidatura-progetto/crea-candidatura-progetto.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { AuthService } from './services/auth.service';
     NotFoundComponent,
     GestisciCandidaturaComponent,
     NavbarComponent,
-    GestisciCandidaturaProgettoComponent
+    CreaCandidaturaProgettoComponent
   ],
   imports: [
     BrowserModule,

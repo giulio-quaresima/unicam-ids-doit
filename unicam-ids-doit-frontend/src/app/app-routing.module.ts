@@ -5,14 +5,14 @@ import { NotFoundComponent } from './components/http/not-found/not-found.compone
 import { CreaProgettoComponent } from './components/crea-progetto/crea-progetto.component';
 import { ModificaProgettoComponent } from './components/modifica-progetto/modifica-progetto.component';
 import { GestisciCandidaturaComponent } from './components/gestisci-candidatura/gestisci-candidatura.component';
-import { GestisciCandidaturaProgettoComponent } from './components/gestisci-candidatura-progetto/gestisci-candidatura-progetto.component';
+import { CreaCandidaturaProgettoComponent } from './components/crea-candidatura-progetto/crea-candidatura-progetto.component';
 
 const routes: Routes = [
   { path : "", component : HomeComponent},
   { path : "crea-progetto", component : CreaProgettoComponent},
   { path : "modifica-progetto/:id", component : ModificaProgettoComponent},
   { path : "gestisci-candidatura/:id", component : GestisciCandidaturaComponent},
-  { path : "gestisci-candidatura-progetto/:idProgetto", component : GestisciCandidaturaProgettoComponent},
+  { path : "crea-candidatura-progetto/:idProgetto", component : CreaCandidaturaProgettoComponent},
   { path : "**", component : NotFoundComponent}
 ];
 

@@ -17,6 +17,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.SortNatural;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -44,9 +45,11 @@ public class Progetto extends AbstractEntity<Progetto>
 	
 	@Enumerated (EnumType.STRING)
 	@Column (length = 32)
+	@NotNull
 	private Stato stato;
 	
 	@Basic
+	@NotNull
 	private String titolo;
 	
 	@Lob
@@ -56,7 +59,8 @@ public class Progetto extends AbstractEntity<Progetto>
 	private String obiettivi;
 	
 	@ManyToOne (optional = false)
-	private SoggettoCollettivo owner;
+	@NotNull
+	private SoggettoCollettivo proponente;
 	
 	@OneToMany (mappedBy = "progetto")
 	private Set<Candidatura> candidature = new HashSet<Candidatura>();
@@ -111,13 +115,13 @@ public class Progetto extends AbstractEntity<Progetto>
 		this.competenzas = competenzas;
 	}
 	
-	public SoggettoCollettivo getOwner()
+	public SoggettoCollettivo getProponente()
 	{
-		return owner;
+		return proponente;
 	}
-	public void setOwner(SoggettoCollettivo owner)
+	public void setProponente(SoggettoCollettivo proponente)
 	{
-		this.owner = owner;
+		this.proponente = proponente;
 	}
 	
 	public Set<Candidatura> getCandidature()

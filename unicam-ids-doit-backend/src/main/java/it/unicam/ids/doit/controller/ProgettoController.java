@@ -53,7 +53,7 @@ public class ProgettoController
 			if (utenteAutenticato != null)
 			{
 				predicate = predicate.or(progetto -> {
-					return utenteAutenticato.has(Autorizzazione.GESTIONE_PROGETTO, progetto.getOwner());
+					return utenteAutenticato.has(Autorizzazione.GESTIONE_PROGETTO, progetto.getProponente());
 					});
 			}
 		}

@@ -17,7 +17,7 @@ export class CreaProgettoComponent implements OnInit {
   soggettoCollettivoes : SoggettoCollettivo[] = [];
 	
 	creaProgettoForm = this.formBuilder.group({
-		owner : this.formBuilder.group({
+		proponente : this.formBuilder.group({
       id : ['']
     }),
 		titolo : [''],

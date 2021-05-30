@@ -1,5 +1,5 @@
-import { AbstractEntity } from "./abstract-entity";
+import { Soggetto } from "./soggetto";
 
-export interface SoggettoCollettivo extends AbstractEntity {
+export interface SoggettoCollettivo extends Soggetto {
     denominazione : string;
 }

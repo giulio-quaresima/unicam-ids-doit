@@ -1,6 +1,6 @@
-import { AbstractEntity } from "./abstract-entity";
+import { Soggetto } from "./soggetto";
 
-export interface SoggettoUtente extends AbstractEntity {
+export interface SoggettoUtente extends Soggetto {
     cognome : string;
     nome : string;
     account : Account;

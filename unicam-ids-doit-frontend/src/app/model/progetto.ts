@@ -10,6 +10,6 @@ export interface Progetto extends AbstractEntity {
 
     competenzas : Competenza[];
 
-    owner : SoggettoCollettivo;
+    proponente : SoggettoCollettivo;
 }
 

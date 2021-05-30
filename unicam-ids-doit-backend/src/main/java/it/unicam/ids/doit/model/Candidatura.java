@@ -3,6 +3,7 @@ package it.unicam.ids.doit.model;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Candidatura extends AbstractEntity<Candidatura>
@@ -16,6 +17,7 @@ public class Candidatura extends AbstractEntity<Candidatura>
 	 * Può essere implementato come override dell'attributo descrizione : string di Descrizione
 	 */
 	@Basic
+	@NotNull
 	private String autopromozione;
 
 	/**
@@ -41,10 +43,19 @@ public class Candidatura extends AbstractEntity<Candidatura>
 	@Basic
 	private String incarico;
 	
-	@ManyToOne
+	/**
+	 * Soggetto che si candida, può essere sia un
+	 * soggetto individuale che collettivo.
+	 */
+	@ManyToOne (optional = false)
+	@NotNull
 	private Soggetto<?> soggetto;
 	
-	@ManyToOne
+	/**
+	 * Il progetto a cui ci si candida.
+	 */
+	@ManyToOne (optional = false)
+	@NotNull
 	private Progetto progetto;
 
 	public String getAutopromozione()

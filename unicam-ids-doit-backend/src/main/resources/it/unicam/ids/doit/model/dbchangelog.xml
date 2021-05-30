@@ -181,7 +181,7 @@
     		<column name="titolo" value="Progetto Prova 01"/>
     		<column name="descrizione" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
     		<column name="obiettivi" value="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
-    		<column name="owner_id" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Università di Camerino'"/>
+    		<column name="proponente_id" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Università di Camerino'"/>
     		<column name="stato" value="IN_MODIFICA"/>
     	</insert>
     	

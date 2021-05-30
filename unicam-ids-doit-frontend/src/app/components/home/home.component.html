@@ -3,7 +3,7 @@
 </div>
 
 <div *ngFor="let progetto of progettoService.progettiVisibili" class="card mt-3">
-    <h5 class="card-header">{{progetto.owner.denominazione}}</h5>
+    <h5 class="card-header">{{progetto.proponente.denominazione}}</h5>
     <div class="card-body">
       <h5 class="card-title">{{progetto.titolo}}</h5>
       <p class="card-text">
@@ -14,6 +14,6 @@
       <h5 class="card-title">Obiettivi</h5>
       <p class="card-text">{{progetto.obiettivi}}</p>
       <a [routerLink]="['/modifica-progetto',progetto.id]" class="btn btn-primary">Modifica</a>
-      <a *ngIf="progetto.stato === 'PUBBLICATO'" [routerLink]="['/gestisci-candidatura-progetto',progetto.id]" class="btn btn-danger">Candidati</a>
+      <a *ngIf="progetto.stato === 'PUBBLICATO'" [routerLink]="['/crea-candidatura-progetto',progetto.id]" class="btn btn-danger">Candidati</a>
     </div>
 </div>
