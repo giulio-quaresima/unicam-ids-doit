@@ -12,6 +12,13 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
 /**
  * 
  * 
@@ -21,6 +28,11 @@ import javax.persistence.OneToMany;
 @Inheritance (strategy = InheritanceType.JOINED)
 @DiscriminatorColumn (name = "discriminator_column", discriminatorType = DiscriminatorType.CHAR)
 @DiscriminatorValue (value = "X")
+@JsonTypeInfo (use = Id.NAME, include = As.PROPERTY, property = "type")
+@JsonSubTypes ({
+	@JsonSubTypes.Type (name = "utente", value = SoggettoUtente.class),
+	@JsonSubTypes.Type (name = "collettivo", value = SoggettoCollettivo.class)})
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public abstract class Soggetto<E extends Soggetto<?>> extends AbstractEntity<E> implements Comparable<E>
 {
 	public static final Comparator<Soggetto<?>> DENOMINAZIONE_COMPARATOR = 

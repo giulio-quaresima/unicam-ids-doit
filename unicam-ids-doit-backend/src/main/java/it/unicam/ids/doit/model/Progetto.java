@@ -23,6 +23,9 @@ import org.hibernate.annotations.SortNatural;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.util.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 /**
  * 
  * 
@@ -30,6 +33,7 @@ import org.springframework.util.StringUtils;
  */
 @Entity
 @Configurable
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Progetto extends AbstractEntity<Progetto>
 {
 	public enum Stato {

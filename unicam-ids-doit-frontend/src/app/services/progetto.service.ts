@@ -1,20 +1,17 @@
-import { Inject, Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Progetto } from '../model/progetto';
-import { CompetenzeService } from './competenze.service';
-import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 import { AuthStatus } from '../model/auth-status';
 import { AbstractService } from './abstract-service';
-import { SoggettoCollettivo } from '../model/soggetto-collettivo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProgettoService extends AbstractService {
 
-  private url = environment.api.baseUrl + "/custom/progettoes";
+  private url = this.customApiBaseUrl + "/progetti";
   progettiVisibili : Progetto[] = [];
 
   constructor(private http: HttpClient, private authService : AuthService) {

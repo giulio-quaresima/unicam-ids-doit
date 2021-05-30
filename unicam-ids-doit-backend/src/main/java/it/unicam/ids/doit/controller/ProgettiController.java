@@ -28,11 +28,11 @@ import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
 import it.unicam.ids.doit.service.CompetenzaService;
 
 @RestController
-@RequestMapping (Constants.CUSTOM_REST_API_BASE_PATH + ProgettoController.BASE_PATH)
+@RequestMapping (Constants.CUSTOM_REST_API_BASE_PATH + ProgettiController.BASE_PATH)
 @CrossOrigin(origins = Constants.CORS_ALLOWED_ORIGIN)
-public class ProgettoController
+public class ProgettiController
 {
-	public static final String BASE_PATH = "/progettoes";
+	public static final String BASE_PATH = "/progetti";
 	
 	@Autowired
 	private CompetenzaService competenzaService;
