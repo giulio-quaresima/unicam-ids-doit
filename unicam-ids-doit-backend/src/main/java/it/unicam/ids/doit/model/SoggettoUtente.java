@@ -1,7 +1,10 @@
 package it.unicam.ids.doit.model;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -35,6 +38,19 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 	@OneToMany (mappedBy = "membro")
 	@JsonManagedReference
 	private Set<Appartenenza> appartenenze = new HashSet<Appartenenza>();
+	
+	public Set<Candidatura> getCandidatureAll()
+	{
+		return Stream.concat(
+					getCandidature().stream(), 
+					getAppartenenze()
+					.stream()
+					.filter(a -> a.getAutorizzazioni().contains(Autorizzazione.CANDIDATURA))
+					.map(Appartenenza::getOrganizzazione)
+					.flatMap(s -> s.getCandidature().stream()))
+				.peek(candidatura -> candidatura.getSoggetto().setCandidature(Collections.emptySet())) // Evita di mostrare di nuovo le candidature dei soggetti
+				.collect(Collectors.toSet());
+	}
 
 	public String getCognome()
 	{

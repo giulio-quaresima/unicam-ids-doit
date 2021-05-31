@@ -18,7 +18,8 @@ export class CreaProgettoComponent implements OnInit {
 	
 	creaProgettoForm = this.formBuilder.group({
 		proponente : this.formBuilder.group({
-      id : ['']
+      id : [''],
+      type : "collettivo"
     }),
 		titolo : [''],
     descrizione : [''],

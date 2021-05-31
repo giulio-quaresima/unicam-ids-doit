@@ -20,7 +20,7 @@ public class CandidatureProgetto
 	private final Set<Candidatura> candidature;
 	
 	/**
-	 * Crea questo oggetto con il progetto passato, me mettendo
+	 * Crea questo oggetto con il progetto passato, mettendo
 	 * in {@link #getCandidature()} tutte le {@code candidature}
 	 * riferite al progetto in questione
 	 * 
