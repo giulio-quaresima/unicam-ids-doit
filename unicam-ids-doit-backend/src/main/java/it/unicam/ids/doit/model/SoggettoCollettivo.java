@@ -4,8 +4,13 @@ import javax.persistence.Basic;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import it.unicam.ids.doit.model.json.JsonViews;
+
 @Entity
 @DiscriminatorValue (value = "C")
+@JsonView(JsonViews.SoggettoCollettivo.class)
 public class SoggettoCollettivo extends Soggetto<SoggettoCollettivo>
 {
 	@Basic

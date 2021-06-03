@@ -45,6 +45,7 @@ export class ModificaProgettoComponent implements OnInit {
   }
 
   submit() : void {
+    console.log(this.progetto);
     this.progettoService.save(this.progetto).subscribe(result => {
       console.log(result);
       this.router.navigate(['/']);

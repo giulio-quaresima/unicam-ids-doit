@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import it.unicam.ids.doit.model.json.JsonViews;
 import it.unicam.ids.doit.utils.Comparators;
 
 /**
@@ -15,6 +18,7 @@ import it.unicam.ids.doit.utils.Comparators;
  * @author Giulio Quaresima (giulio.quaresima--at--unipg.it, giulio.quaresima--at--gmail.com)
  */
 @Entity
+@JsonView(JsonViews.Competenza.class)
 public class Competenza extends AbstractEntity<Competenza>
 {
 	/**

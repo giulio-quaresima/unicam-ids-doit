@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import it.unicam.ids.doit.config.Constants;
 import it.unicam.ids.doit.model.Appartenenza;
+import it.unicam.ids.doit.model.Appartenenza.Autorizzazione;
 import it.unicam.ids.doit.model.SoggettoCollettivo;
 import it.unicam.ids.doit.model.SoggettoUtente;
-import it.unicam.ids.doit.model.Appartenenza.Autorizzazione;
+import it.unicam.ids.doit.model.json.JsonViews;
 import it.unicam.ids.doit.repo.SoggettoCollettivoRepository;
 import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
 
@@ -40,12 +43,14 @@ public class SoggettoCollettivoController
 	private SoggettoUtenteRepository utenteRepository;
 	
 	@GetMapping
+	@JsonView (JsonViews.SoggettoCollettivo.class)
 	public List<SoggettoCollettivo> soggetti()
 	{
 		return soggettoCollettivoRepository.findAll();
 	}
 	
 	@GetMapping ("/currentUser/autorizzazione/{autorizzazione}")
+	@JsonView (JsonViews.SoggettoCollettivo.class)
 	public SortedSet<SoggettoCollettivo> soggettiUtente(Principal principal, @PathVariable Autorizzazione autorizzazione)
 	{
 		if (principal != null)
@@ -64,6 +69,7 @@ public class SoggettoCollettivoController
 	}
 	
 	@GetMapping ("/{soggettoCollettivo:\\d}")
+	@JsonView (JsonViews.SoggettoCollettivo.class)
 	public SoggettoCollettivo soggetto(@PathVariable SoggettoCollettivo soggettoCollettivo)
 	{
 		return soggettoCollettivo;

@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import it.unicam.ids.doit.model.json.JsonViews;
 
 /**
  * 
@@ -20,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
  */
 @Entity
 @Table (indexes = @Index (columnList = Appartenenza.SOGCOLL_COLUMN_NAME + "," + Appartenenza.UTENTE_COLUMN_NAME, unique = true))
+@JsonView(JsonViews.Appartenenza.class)
 public class Appartenenza extends AbstractEntity<Appartenenza>
 {
 	public enum Autorizzazione {

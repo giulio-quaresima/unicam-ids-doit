@@ -18,10 +18,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import it.unicam.ids.doit.config.Constants;
 import it.unicam.ids.doit.model.Appartenenza.Autorizzazione;
 import it.unicam.ids.doit.model.Progetto;
 import it.unicam.ids.doit.model.Progetto.Stato;
+import it.unicam.ids.doit.model.json.JsonViews;
 import it.unicam.ids.doit.model.SoggettoUtente;
 import it.unicam.ids.doit.repo.ProgettoRepository;
 import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
@@ -44,6 +47,7 @@ public class ProgettiController
 	private SoggettoUtenteRepository soggettoUtenteRepository;
 	
 	@GetMapping 
+	@JsonView (JsonViews.ProgettoTree.class)
 	public List<Progetto> get(Principal principal)
 	{
 		Predicate<Progetto> predicate = Progetto::isVisibilePubblicamente;
@@ -61,6 +65,7 @@ public class ProgettiController
 	}
 	
 	@PostMapping
+	@JsonView (JsonViews.ProgettoTree.class)
 	public Progetto create(@RequestBody Progetto progetto)
 	{
 		progetto.setStato(Stato.IN_MODIFICA);
@@ -68,18 +73,21 @@ public class ProgettiController
 	}
 	
 	@GetMapping ("/{progetto:\\d}")
+	@JsonView (JsonViews.ProgettoTree.class)
 	public Progetto get(Progetto progetto)
 	{
 		return progetto;
 	}
 	
 	@PutMapping ("/{progetto:\\d}")
+	@JsonView (JsonViews.ProgettoTree.class)
 	public Progetto save(@RequestBody Progetto progetto) throws IOException
 	{
 		return progettoRepository.save(progetto);
 	}
 	
 	@PostMapping ("/{progetto:\\d}/competenzas")
+	@JsonView (JsonViews.ProgettoTree.class)
 	public Progetto addCompetenza(Progetto progetto, @RequestBody String tagCompetenza)
 	{
 		if (StringUtils.hasText(tagCompetenza))
@@ -91,6 +99,7 @@ public class ProgettiController
 	}
 	
 	@DeleteMapping ("/{progetto:\\d}/competenzas/{tag}")
+	@JsonView (JsonViews.ProgettoTree.class)
 	public Progetto delCompetenza(Progetto progetto, @PathVariable ("tag") String tag)
 	{
 		progetto.removeCompetenza(tag);

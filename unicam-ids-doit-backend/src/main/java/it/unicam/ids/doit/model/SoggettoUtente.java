@@ -1,6 +1,5 @@
 package it.unicam.ids.doit.model;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -16,12 +15,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.SecondaryTable;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import it.unicam.ids.doit.model.Appartenenza.Autorizzazione;
+import it.unicam.ids.doit.model.json.JsonViews;
 
 @Entity
 @DiscriminatorValue (value = "U")
 @SecondaryTable (name = SoggettoUtente.SECONDARY_TABLE)
+@JsonView(JsonViews.SoggettoUtente.class)
 public class SoggettoUtente extends Soggetto<SoggettoUtente>
 {
 	public static final String SECONDARY_TABLE = "account";
@@ -39,6 +41,7 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 	@JsonManagedReference
 	private Set<Appartenenza> appartenenze = new HashSet<Appartenenza>();
 	
+	@JsonView (JsonViews.SoggettoTree.class)
 	public Set<Candidatura> getCandidatureAll()
 	{
 		return Stream.concat(
@@ -48,7 +51,6 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 					.filter(a -> a.getAutorizzazioni().contains(Autorizzazione.CANDIDATURA))
 					.map(Appartenenza::getOrganizzazione)
 					.flatMap(s -> s.getCandidature().stream()))
-				.peek(candidatura -> candidatura.getSoggetto().setCandidature(Collections.emptySet())) // Evita di mostrare di nuovo le candidature dei soggetti
 				.collect(Collectors.toSet());
 	}
 
@@ -79,6 +81,7 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 		this.account = account;
 	}
 	
+	@JsonView (JsonViews.SoggettoTree.class)
 	public Set<Appartenenza> getAppartenenze()
 	{
 		return appartenenze;
@@ -115,6 +118,7 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 	}
 	
 	@Embeddable
+	@JsonView(JsonViews.Account.class)
 	public static class Account
 	{
 		@Column (table = SECONDARY_TABLE)

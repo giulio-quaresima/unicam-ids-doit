@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import it.unicam.ids.doit.config.Constants;
 import it.unicam.ids.doit.dto.CandidatureProgetto;
 import it.unicam.ids.doit.model.Appartenenza;
 import it.unicam.ids.doit.model.Appartenenza.Autorizzazione;
+import it.unicam.ids.doit.model.json.JsonViews;
 import it.unicam.ids.doit.model.Candidatura;
 import it.unicam.ids.doit.model.Soggetto;
 import it.unicam.ids.doit.model.SoggettoUtente;
@@ -36,6 +39,7 @@ public class CandidatureProgettoController
 	private SoggettoUtenteRepository soggettoUtenteRepository;
 	
 	@GetMapping 
+	@JsonView (JsonViews.SoggettoUtente.class)
 	public List<CandidatureProgetto> get(Principal principal)
 	{
 		Set<Candidatura> candidatureUtente = new HashSet<Candidatura>();

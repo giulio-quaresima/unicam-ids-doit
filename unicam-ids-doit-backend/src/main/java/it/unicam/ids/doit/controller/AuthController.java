@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import it.unicam.ids.doit.config.Constants;
 import it.unicam.ids.doit.config.SecurityConfig.UnsecurityFilter;
 import it.unicam.ids.doit.model.SoggettoUtente;
+import it.unicam.ids.doit.model.json.JsonViews;
 import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
 
 @RestController
@@ -35,6 +38,7 @@ public class AuthController
 	private UnsecurityFilter unsecurityFilter;
 	
 	@GetMapping
+	@JsonView (JsonViews.SoggettoUtente.class)
 	public Response<AuthStatus> isAuthenticated(Principal principal)
 	{
 		SoggettoUtente utente = null;
@@ -46,6 +50,7 @@ public class AuthController
 	}
 	
 	@RequestMapping ("/login")
+	@JsonView (JsonViews.SoggettoUtente.class)
 	public Response<AuthStatus> login(
 			@RequestParam ("username") String username,
 			@RequestParam ("password") String password)
@@ -63,6 +68,7 @@ public class AuthController
 	}
 	
 	@RequestMapping ("/logout")
+	@JsonView (JsonViews.SoggettoUtente.class)
 	public Response<AuthStatus> logout()
 	{
 		unsecurityFilter.setCurrentAuthentication(null);		
@@ -74,12 +80,14 @@ public class AuthController
 	 * non appena si sarà sviluppata una vera autenticazione.
 	 */
 	@GetMapping ("/users")
+	@JsonView (JsonViews.SoggettoUtente.class)
 	@Deprecated
 	public Response<List<SoggettoUtente>> users()
 	{
 		return Response.of(soggettoUtenteRepository.findAll());
 	}
 	
+	@JsonView (JsonViews.SoggettoUtente.class)
 	public static class AuthStatus
 	{
 		private final boolean authenticated;

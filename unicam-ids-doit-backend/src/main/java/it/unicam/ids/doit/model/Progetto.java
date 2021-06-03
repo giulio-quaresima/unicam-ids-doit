@@ -23,8 +23,9 @@ import org.hibernate.annotations.SortNatural;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.util.StringUtils;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import it.unicam.ids.doit.model.json.JsonViews;
 
 /**
  * 
@@ -33,7 +34,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 @Configurable
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonView(JsonViews.Progetto.class)
 public class Progetto extends AbstractEntity<Progetto>
 {
 	public enum Stato {
@@ -67,6 +68,7 @@ public class Progetto extends AbstractEntity<Progetto>
 	private SoggettoCollettivo proponente;
 	
 	@OneToMany (mappedBy = "progetto")
+	@JsonView(JsonViews.ProgettoTree.class)
 	private Set<Candidatura> candidature = new HashSet<Candidatura>();
 
 	@ManyToMany

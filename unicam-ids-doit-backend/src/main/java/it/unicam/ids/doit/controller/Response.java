@@ -1,5 +1,10 @@
 package it.unicam.ids.doit.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import it.unicam.ids.doit.model.json.JsonViews;
+
+@JsonView (JsonViews.Any.class)
 public class Response<T>
 {
 	public enum Status

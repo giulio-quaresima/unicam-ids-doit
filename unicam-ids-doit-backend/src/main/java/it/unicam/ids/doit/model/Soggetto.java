@@ -12,12 +12,13 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
+import it.unicam.ids.doit.model.json.JsonViews;
 
 /**
  * 
@@ -32,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 @JsonSubTypes ({
 	@JsonSubTypes.Type (name = "utente", value = SoggettoUtente.class),
 	@JsonSubTypes.Type (name = "collettivo", value = SoggettoCollettivo.class)})
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+@JsonView(JsonViews.Soggetto.class)
 public abstract class Soggetto<E extends Soggetto<?>> extends AbstractEntity<E> implements Comparable<E>
 {
 	public static final Comparator<Soggetto<?>> DENOMINAZIONE_COMPARATOR = 
@@ -48,6 +49,7 @@ public abstract class Soggetto<E extends Soggetto<?>> extends AbstractEntity<E> 
 	@OneToMany (mappedBy = "soggetto")
 	private Set<Candidatura> candidature = new HashSet<Candidatura>();
 	
+	@JsonView (JsonViews.SoggettoTree.class)
 	public Set<Candidatura> getCandidature()
 	{
 		return candidature;
