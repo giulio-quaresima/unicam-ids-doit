@@ -5,9 +5,6 @@ import java.util.Scanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Import;
-
-import it.unicam.ids.doit.config.PersistenceConfig;
 
 /**
  * Bootstrapper dell'applicazione, che permette anche di terminare in modo 
@@ -21,7 +18,6 @@ import it.unicam.ids.doit.config.PersistenceConfig;
  * @author Giulio Quaresima (giulio.quaresima--at--unipg.it, giulio.quaresima--at--gmail.com)
  */
 @SpringBootApplication (scanBasePackageClasses = Bootstrap.class)
-@Import ({PersistenceConfig.class})
 public class Bootstrap
 {
 	public static void main(String[] args)

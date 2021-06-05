@@ -13,7 +13,7 @@
       <p class="card-text">{{progetto.descrizione}}</p>
       <h5 class="card-title">Obiettivi</h5>
       <p class="card-text">{{progetto.obiettivi}}</p>
-      <a [routerLink]="['/modifica-progetto',progetto.id]" class="btn btn-primary">Modifica</a>
-      <a *ngIf="progetto.stato === 'PUBBLICATO'" [routerLink]="['/crea-candidatura-progetto',progetto.id]" class="btn btn-danger">Candidati</a>
+      <a *ngIf="progetto.currentUserOwner" [routerLink]="['/modifica-progetto',progetto.id]" class="btn btn-outline-primary me-3">Modifica</a>
+      <a *ngIf="progetto.stato === 'PUBBLICATO'" [routerLink]="['/crea-candidatura-progetto',progetto.id]" class="btn btn-outline-danger">Càndidati!</a>
     </div>
 </div>

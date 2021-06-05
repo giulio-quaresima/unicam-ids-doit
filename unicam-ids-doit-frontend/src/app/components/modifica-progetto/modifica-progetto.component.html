@@ -18,7 +18,12 @@
 		<textarea [(ngModel)]="progetto.obiettivi" class="form-control" name="obiettivi" required></textarea>
 	</div>
     
-    <div class="form-group">
+    <div class="form-group mt-3">
+        <button class="btn btn-outline-success" type="submit" (click)="submit()">Salva</button>
+        <button *ngIf="progetto.stato === 'IN_MODIFICA'" class="btn btn-outline-danger ms-3" type="submit" (click)="pubblica()">Pubblica progetto</button>
+    </div>
+    
+    <form class="form-group">
         <label>Competenze tags</label>
         <div *ngFor="let competenza of progetto.competenzas">
             <div class="input-group mt-3">
@@ -28,13 +33,8 @@
         </div>
         <div class="input-group mt-3">
             <input type="text" class="form-control" [(ngModel)]="newTag" name="newTag">
-            <button class="btn btn-outline-success" type="button" (click)="addTag()">Aggiungi</button>
+            <button class="btn btn-outline-success" type="submit" (click)="addTag()">Aggiungi</button>
         </div>
-    </div>
-
-    <div class="form-group mt-3">
-        <button class="btn btn-outline-success" type="submit" (click)="submit()">Salva</button>
-        <button *ngIf="progetto.stato === 'IN_MODIFICA'" class="btn btn-outline-danger ms-3" type="submit" (click)="pubblica()">Pubblica progetto</button>
-    </div>
-
+    </form>
+    
 </form>

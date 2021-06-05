@@ -3,7 +3,6 @@ package it.unicam.ids.doit.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import it.unicam.ids.doit.config.Constants;
-import it.unicam.ids.doit.model.Appartenenza.Autorizzazione;
+import it.unicam.ids.doit.dto.ProgettoDto;
+import it.unicam.ids.doit.dto.ProgettoDtoFactory;
 import it.unicam.ids.doit.model.Progetto;
 import it.unicam.ids.doit.model.Progetto.Stato;
 import it.unicam.ids.doit.model.json.JsonViews;
-import it.unicam.ids.doit.model.SoggettoUtente;
 import it.unicam.ids.doit.repo.ProgettoRepository;
 import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
 import it.unicam.ids.doit.service.CompetenzaService;
@@ -44,24 +43,20 @@ public class ProgettiController
 	private ProgettoRepository progettoRepository;
 	
 	@Autowired
+	private ProgettoDtoFactory progettoDtoFactory;
+	
+	@Autowired
 	private SoggettoUtenteRepository soggettoUtenteRepository;
 	
 	@GetMapping 
 	@JsonView (JsonViews.ProgettoTree.class)
-	public List<Progetto> get(Principal principal)
+	public List<ProgettoDto> get(Principal principal)
 	{
-		Predicate<Progetto> predicate = Progetto::isVisibilePubblicamente;
-		if (principal != null)
-		{
-			SoggettoUtente utenteAutenticato = soggettoUtenteRepository.findOneByAccountUsername(principal.getName());
-			if (utenteAutenticato != null)
-			{
-				predicate = predicate.or(progetto -> {
-					return utenteAutenticato.has(Autorizzazione.GESTIONE_PROGETTO, progetto.getProponente());
-					});
-			}
-		}
-		return progettoRepository.findAll().stream().filter(predicate).collect(Collectors.toList());
+		return progettoDtoFactory
+				.adaptAll(progettoRepository.findAll().stream())
+				.filter(ProgettoDto::isVisible)
+				.collect(Collectors.toList())
+				;
 	}
 	
 	@PostMapping
