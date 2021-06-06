@@ -8,43 +8,43 @@ import it.unicam.ids.doit.model.AbstractEntity;
 
 public abstract class AbstractDto<E extends AbstractEntity<E>>
 {
-	protected final E delegate;
+	protected final E adaptee;
 
-	public AbstractDto(E delegate)
+	public AbstractDto(E adaptee)
 	{
 		super();
-		this.delegate = Objects.requireNonNull(delegate);
+		this.adaptee = Objects.requireNonNull(adaptee);
 	}
 
 	@JsonIgnore // La visibilità dev'essere garantita dai metodi delegate, non attraverso il delegate stesso
 	public E getDelegate()
 	{
-		return delegate;
+		return adaptee;
 	}
 
 	public Integer getId()
 	{
-		return delegate.getId();
+		return adaptee.getId();
 	}
 
 	public int hashCode()
 	{
-		return delegate.hashCode();
+		return adaptee.hashCode();
 	}
 
 	public boolean equals(Object obj)
 	{
-		return delegate.equals(obj);
+		return adaptee.equals(obj);
 	}
 
 	public int compareTo(E o)
 	{
-		return delegate.compareTo(o);
+		return adaptee.compareTo(o);
 	}
 
 	public String toString()
 	{
-		return delegate.toString();
+		return adaptee.toString();
 	}
 	
 }

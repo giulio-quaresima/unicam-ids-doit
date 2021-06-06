@@ -34,6 +34,10 @@ export class CandidaturaService extends AbstractService {
     return this.http.get<Candidatura[]>(this.url);
   }
 
+  get(id : number) : Observable<Candidatura> {
+    return this.http.get<Candidatura>(this.url + "/" + id);
+  }
+
   create(candidatura : Candidatura) : Observable<any> {
     return this.http.post(this.url, candidatura);
   }

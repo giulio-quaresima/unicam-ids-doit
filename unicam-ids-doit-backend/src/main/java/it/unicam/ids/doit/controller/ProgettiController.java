@@ -29,6 +29,11 @@ import it.unicam.ids.doit.repo.ProgettoRepository;
 import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
 import it.unicam.ids.doit.service.CompetenzaService;
 
+/**
+ * 
+ * 
+ * @author Giulio Quaresima (giulio.quaresima--at--gmail.com, giulio.quaresima--at--unipg.it, giulio.quaresima--at--studenti.unicam.it)
+ */
 @RestController
 @RequestMapping (Constants.CUSTOM_REST_API_BASE_PATH + ProgettiController.BASE_PATH)
 @CrossOrigin(origins = Constants.CORS_ALLOWED_ORIGIN)

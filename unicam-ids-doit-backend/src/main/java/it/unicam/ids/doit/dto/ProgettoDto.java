@@ -17,9 +17,9 @@ public class ProgettoDto extends AbstractDto<Progetto>
 {
 	private boolean currentUserOwner = false;
 	
-	public ProgettoDto(Progetto delegate)
+	public ProgettoDto(Progetto adaptee)
 	{
-		super(delegate);
+		super(adaptee);
 	}
 	
 	public boolean isCurrentUserOwner()
@@ -35,37 +35,41 @@ public class ProgettoDto extends AbstractDto<Progetto>
 	{
 		return isVisibilePubblicamente() || isCurrentUserOwner();
 	}
+	
+	
+	// Delegate methods ///////////////////////////////////////////////////////////
 
 	public Stato getStato()
 	{
-		return delegate.getStato();
+		return adaptee.getStato();
 	}
 	public String getTitolo()
 	{
-		return delegate.getTitolo();
+		return adaptee.getTitolo();
 	}
 	public String getDescrizione()
 	{
-		return delegate.getDescrizione();
+		return adaptee.getDescrizione();
 	}
 	public String getObiettivi()
 	{
-		return delegate.getObiettivi();
+		return adaptee.getObiettivi();
 	}
 	public SortedSet<Competenza> getCompetenzas()
 	{
-		return delegate.getCompetenzas();
+		return adaptee.getCompetenzas();
 	}
 	public SoggettoCollettivo getProponente()
 	{
-		return delegate.getProponente();
+		return adaptee.getProponente();
 	}
+	@JsonView(JsonViews.ProgettoTree.class)
 	public Set<Candidatura> getCandidature()
 	{
-		return delegate.getCandidature();
+		return adaptee.getCandidature();
 	}
 	public boolean isVisibilePubblicamente()
 	{
-		return delegate.isVisibilePubblicamente();
+		return adaptee.isVisibilePubblicamente();
 	}
 }

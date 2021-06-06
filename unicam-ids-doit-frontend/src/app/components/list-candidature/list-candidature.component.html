@@ -2,7 +2,6 @@
     <h5 class="card-header">Candidatura al progetto "{{candidatura.progetto.titolo}}"</h5>
     <div class="card-body">
       <h5 class="card-title">Capofila: {{candidatura.soggetto.denominazione}}</h5>
-      <h5 class="card-title">Promozione della candidatura</h5>
       <p class="card-text">{{candidatura.autopromozione}}</p>
       <a [routerLink]="['/gestisci-candidatura',candidatura.id]" class="btn btn-outline-primary">Gestisci</a>
     </div>

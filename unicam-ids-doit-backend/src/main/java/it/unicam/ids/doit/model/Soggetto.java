@@ -3,6 +3,7 @@ package it.unicam.ids.doit.model;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -47,9 +48,18 @@ public abstract class Soggetto<E extends Soggetto<?>> extends AbstractEntity<E> 
 			DENOMINAZIONE_COMPARATOR.thenComparing(AbstractEntity.DEFAULT_COMPARATOR);
 	
 	@OneToMany (mappedBy = "soggetto")
+	@JsonView (JsonViews.SoggettoTree.class)
 	private Set<Candidatura> candidature = new HashSet<Candidatura>();
 	
+	@OneToMany (mappedBy = "invitato")
 	@JsonView (JsonViews.SoggettoTree.class)
+	private Set<Invito> invitiRicevuti = new HashSet<>();
+
+	/**
+	 * Le candidature di cui questo soggetto è capofila (owner).
+	 * 
+	 * @return
+	 */
 	public Set<Candidatura> getCandidature()
 	{
 		return candidature;
@@ -59,6 +69,32 @@ public abstract class Soggetto<E extends Soggetto<?>> extends AbstractEntity<E> 
 		this.candidature = candidature;
 	}
 
+	/**
+	 * Gli inviti ricevuti a partecipare ad una candidatura.
+	 * 
+	 * @return
+	 */
+	public Set<Invito> getInvitiRicevuti()
+	{
+		return invitiRicevuti;
+	}
+	public void setInvitiRicevuti(Set<Invito> invitiRicevuti)
+	{
+		this.invitiRicevuti = invitiRicevuti;
+	}
+	
+	/**
+	 * Facility per ottenere direttamente le candidature
+	 * passando per {@link #getInvitiRicevuti()}.
+	 * 
+	 * @return
+	 */
+	@JsonView (JsonViews.SoggettoTree.class)
+	public Set<Candidatura> getCandidatureDaInvitoRicevuto()
+	{
+		return getInvitiRicevuti().stream().map(Invito::getCandidatura).collect(Collectors.toSet());
+	}
+	
 	public abstract String getDenominazione();
 
 	@Override

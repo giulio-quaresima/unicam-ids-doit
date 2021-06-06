@@ -2,7 +2,9 @@ package it.unicam.ids.doit.config;
 
 import javax.sql.DataSource;
 
+import org.hibernate.boot.model.naming.PhysicalNamingStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -21,6 +23,12 @@ public class PersistenceConfig
 		springLiquibase.setDropFirst(true);
 		
 		return springLiquibase;
+	}
+	
+	@Bean
+	public PhysicalNamingStrategy physical() 
+	{
+	    return new SpringPhysicalNamingStrategy();
 	}
 	
 }

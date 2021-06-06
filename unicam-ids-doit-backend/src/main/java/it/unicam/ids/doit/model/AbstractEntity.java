@@ -37,9 +37,9 @@ public abstract class AbstractEntity<E extends AbstractEntity<?>> implements Com
 	}
 	
 	/**
-	 * 
-	 * 
-	 * @return
+	 * @return La classe dell'entity: si raccomanda di non restituire
+	 * il return value di {@link #getClass()}, perché tale metodo potrebbe
+	 * restituire una classe di tipo Proxy o CGILIB o simili.
 	 */
 	protected abstract Class<E> entityType();
 	

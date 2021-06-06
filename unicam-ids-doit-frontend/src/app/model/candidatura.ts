@@ -9,5 +9,6 @@ export interface Candidatura extends AbstractEntity {
     incarico : String;
     soggetto : Soggetto;
     progetto : Progetto;
-
+    currentUserOwner : boolean;
+    currentUserInvitato : boolean;
 }

@@ -1,18 +1,55 @@
 package it.unicam.ids.doit.model;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 import it.unicam.ids.doit.model.json.JsonViews;
 
+/**
+ * 
+ * 
+ * @author Giulio Quaresima (giulio.quaresima--at--gmail.com, giulio.quaresima--at--unipg.it, giulio.quaresima--at--studenti.unicam.it)
+ */
 @Entity
 @JsonView(JsonViews.Candidatura.class)
 public class Candidatura extends AbstractEntity<Candidatura>
 {
+	@Basic
+	@NotNull
+	private String autopromozione;
+
+	@Basic
+	private boolean inviata = false;
+	
+	@Basic
+	private boolean selezionata = false;
+	
+	@Basic
+	private String incarico;
+	
+	@ManyToOne (optional = false)
+	@NotNull
+	@JsonView (JsonViews.CandidaturaTree.class)
+	private Soggetto<?> soggetto;
+	
+	@OneToMany (mappedBy = "candidatura")
+	@JsonView (JsonViews.CandidaturaTree.class)
+	private Set<Invito> inviti = new HashSet<>();
+	
+	@ManyToOne (optional = false)
+	@NotNull
+	@JsonView (JsonViews.CandidaturaTree.class)
+	private Progetto progetto;
+
 	/**
 	 * Campo descrittivo con il quale il Progettista, 
 	 * unitamente ad eventuali documenti allegati (Documento), 
@@ -21,50 +58,6 @@ public class Candidatura extends AbstractEntity<Candidatura>
 	 * le competenze e le capacità per farlo. 
 	 * Può essere implementato come override dell'attributo descrizione : string di Descrizione
 	 */
-	@Basic
-	@NotNull
-	private String autopromozione;
-
-	/**
-	 * La candidatura può avere due stati, in bozza (false) e inviata (true).
-	 */
-	@Basic
-	private boolean inviata = false;
-	
-	/**
-	 * Se true, significa che questa candidatura, 
-	 * comprensiva del capofila e degli eventuali 
-	 * altri progettisti invitati dal capofila che abbiano accettata, 
-	 * è stata selezionata dal proponente per implementare il progetto.
-	 */
-	@Basic
-	private boolean selezionata = false;
-	
-	/**
-	 * La descrizione dell'incarico assegnato al Progettista 
-	 * come parte della cordata individuata dal Proponente 
-	 * nella realizzazione del Progetto.
-	 */
-	@Basic
-	private String incarico;
-	
-	/**
-	 * Soggetto che si candida, può essere sia un
-	 * soggetto individuale che collettivo.
-	 */
-	@ManyToOne (optional = false)
-	@NotNull
-	@JsonView (JsonViews.CandidaturaTree.class)
-	private Soggetto<?> soggetto;
-	
-	/**
-	 * Il progetto a cui ci si candida.
-	 */
-	@ManyToOne (optional = false)
-	@NotNull
-	@JsonView (JsonViews.CandidaturaTree.class)
-	private Progetto progetto;
-
 	public String getAutopromozione()
 	{
 		return autopromozione;
@@ -74,6 +67,9 @@ public class Candidatura extends AbstractEntity<Candidatura>
 		this.autopromozione = autopromozione;
 	}
 
+	/**
+	 * La candidatura può avere due stati, in bozza (false) e inviata (true).
+	 */
 	public boolean isInviata()
 	{
 		return inviata;
@@ -83,6 +79,12 @@ public class Candidatura extends AbstractEntity<Candidatura>
 		this.inviata = inviata;
 	}
 
+	/**
+	 * Se true, significa che questa candidatura, 
+	 * comprensiva del capofila e degli eventuali 
+	 * altri progettisti invitati dal capofila che abbiano accettata, 
+	 * è stata selezionata dal proponente per implementare il progetto.
+	 */
 	public boolean isSelezionata()
 	{
 		return selezionata;
@@ -92,6 +94,11 @@ public class Candidatura extends AbstractEntity<Candidatura>
 		this.selezionata = selezionata;
 	}
 	
+	/**
+	 * La descrizione dell'incarico assegnato al Progettista 
+	 * come parte della cordata individuata dal Proponente 
+	 * nella realizzazione del Progetto.
+	 */
 	public String getIncarico()
 	{
 		return incarico;
@@ -101,6 +108,10 @@ public class Candidatura extends AbstractEntity<Candidatura>
 		this.incarico = incarico;
 	}
 	
+	/**
+	 * Soggetto che si candida, può essere sia un
+	 * soggetto individuale che collettivo.
+	 */
 	public Soggetto<?> getSoggetto()
 	{
 		return soggetto;
@@ -110,6 +121,33 @@ public class Candidatura extends AbstractEntity<Candidatura>
 		this.soggetto = soggetto;
 	}
 
+	/**
+	 * @return
+	 */
+	public Set<Invito> getInviti()
+	{
+		return inviti;
+	}
+	public void setInviti(Set<Invito> inviti)
+	{
+		this.inviti = inviti;
+	}
+	
+	/**
+	 * Facility per ottenere direttamente il set degli invitati
+	 * passando per {@link #getInviti()}.
+	 * 
+	 * @return
+	 */
+	@JsonView (JsonViews.CandidaturaTree.class)
+	public Set<Soggetto<?>> getInvitati()
+	{
+		return getInviti().stream().map(Invito::getInvitato).collect(Collectors.toSet());
+	}
+	
+	/**
+	 * Il progetto a cui ci si candida.
+	 */
 	public Progetto getProgetto()
 	{
 		return progetto;
