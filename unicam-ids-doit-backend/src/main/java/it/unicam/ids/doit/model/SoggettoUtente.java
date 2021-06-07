@@ -2,6 +2,8 @@ package it.unicam.ids.doit.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -11,8 +13,13 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SecondaryTable;
+
+import org.hibernate.annotations.SortNatural;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -40,6 +47,11 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 	@OneToMany (mappedBy = "membro")
 	@JsonManagedReference
 	private Set<Appartenenza> appartenenze = new HashSet<Appartenenza>();
+	
+	@ManyToMany
+	@JoinTable (name = "soggetto_utente_competenza", inverseJoinColumns = @JoinColumn (name = "id_competenza"), joinColumns = @JoinColumn (name = "id_soggetto_utente"))
+	@SortNatural
+	private SortedSet<Competenza> competenzas = new TreeSet<Competenza>();
 	
 	@JsonView (JsonViews.SoggettoTree.class)
 	public Set<Candidatura> getCandidatureAll()
@@ -91,6 +103,15 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 		this.appartenenze = appartenenze;
 	}
 	
+	public SortedSet<Competenza> getCompetenzas()
+	{
+		return competenzas;
+	}
+	public void setCompetenzas(SortedSet<Competenza> competenzas)
+	{
+		this.competenzas = competenzas;
+	}
+
 	public boolean has(Autorizzazione autorizzazione, SoggettoCollettivo soggettoCollettivo)
 	{
 		if (soggettoCollettivo != null && autorizzazione != null)

@@ -14,74 +14,400 @@
     
     <changeSet id="01-002-first_data" author="giulio">
     
+    	<!-- COMPETENZE -->
+    
+    	<insert tableName="competenza">
+    		<column name="tag" value="smalltalk"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="java"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="php"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="html"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="javascript"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="C"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="C++"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="perl"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="python"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="LISP"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="bash"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="ruby"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="css"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value=".NET"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="assembler"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="R"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="matlab"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="fortran"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="ALGOL"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="ada"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="typescript"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="go"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="SQL"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="marchigiano"/>
+    	</insert>
+    	
+    	<!-- UTENTI -->
+    
     	<insert tableName="soggetto">
     		<column name="discriminator_column" value="U"/>
-    	</insert>
-    
+    	</insert>    
     	<insert tableName="soggetto_utente">
     		<column name="id" valueComputed="IDENTITY()" generationType=""/>
     		<column name="nome">Giulio</column>
     		<column name="cognome">Quaresima</column>
-<!--     		<column name="password"></column> -->
     	</insert>
-    	
     	<insert tableName="account">
     		<column name="id" valueComputed="IDENTITY()"/>
     		<column name="username">giulio</column>
     		<column name="email">giulio.quaresima@studenti.unicam.it</column>
     	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'java'"/>    		
+    	</insert>
     	
     	<insert tableName="soggetto">
     		<column name="discriminator_column" value="U"/>
     	</insert>
-    
     	<insert tableName="soggetto_utente">
     		<column name="id" valueComputed="IDENTITY()" generationType=""/>
     		<column name="nome">Daneel</column>
     		<column name="cognome">Olivaw</column>
-<!--     		<column name="password"></column> -->
     	</insert>
-    	
     	<insert tableName="account">
     		<column name="id" valueComputed="IDENTITY()"/>
     		<column name="username">rdaneel</column>
     		<column name="email">r.daneel.olivaw@example.org</column>
     	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'assembler'"/>    		
+    	</insert>
     	
     	<insert tableName="soggetto">
     		<column name="discriminator_column" value="U"/>
     	</insert>
-    
     	<insert tableName="soggetto_utente">
     		<column name="id" valueComputed="IDENTITY()" generationType=""/>
     		<column name="nome">Neri</column>
     		<column name="cognome">Marcorè</column>
-<!--     		<column name="password"></column> -->
     	</insert>
-    	
     	<insert tableName="account">
     		<column name="id" valueComputed="IDENTITY()"/>
     		<column name="username">neri</column>
     		<column name="email">neri@example.org</column>
     	</insert>
-    	
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'marchigiano'"/>    		
+    	</insert>
+    	    	
     	<insert tableName="soggetto">
     		<column name="discriminator_column" value="U"/>
     	</insert>
-    
     	<insert tableName="soggetto_utente">
     		<column name="id" valueComputed="IDENTITY()" generationType=""/>
     		<column name="nome">Gentile I</column>
     		<column name="cognome">da Varano</column>
-<!--     		<column name="password"></column> -->
-    	</insert>
-    	
+    	</insert>    	
     	<insert tableName="account">
     		<column name="id" valueComputed="IDENTITY()"/>
     		<column name="username">varano</column>
     		<column name="email">gentile.varano@example.org</column>
     	</insert>
     	
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Drew</column>
+    		<column name="cognome">Pritchard</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">drew</column>
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Uhtred</column>
+    		<column name="cognome">Ragnarson</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">uhtred</column>
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Sanjeev</column>
+    		<column name="cognome">Arora</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">sanjeev</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'matlab'"/>    		
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Charles</column>
+    		<column name="cognome">Babbage</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">charles</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'assembler'"/>    		
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Edgar</column>
+    		<column name="cognome">Codd</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">edgar</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'SQL'"/>    		
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Edsger</column>
+    		<column name="cognome">Dijkstra</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">edsger</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'C'"/>    		
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Eric</column>
+    		<column name="cognome">Evans</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">eric</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'java'"/>    		
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Martin</column>
+    		<column name="cognome">Fowler</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">martin</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'java'"/>    		
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">James</column>
+    		<column name="cognome">Gosling</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">james</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'java'"/>    		
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Andy</column>
+    		<column name="cognome">Hopper</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">andy</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'bash'"/>    		
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Dan</column>
+    		<column name="cognome">Ingalls</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">dan</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'smalltalk'"/>    		
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Alan</column>
+    		<column name="cognome">Kay</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">alan</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'smalltalk'"/>    		
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Ada</column>
+    		<column name="cognome">Lovelace</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">ada</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'ada'"/>    		
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Gordon</column>
+    		<column name="cognome">Moore</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">gordon</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'assembler'"/>    		
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">John</column>
+    		<column name="cognome">Neumann</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">john</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'fortran'"/>    		
+    	</insert>
+
+    	<!-- SOGGETTI COLLETTIVI -->
+    
     	<insert tableName="soggetto">
     		<column name="discriminator_column" value="C"/>
     	</insert>
@@ -118,6 +444,9 @@
     		<column name="denominazione">Università di Perugia</column>
     	</insert>
     	
+    	
+    	<!-- MEMBERSHIP -->
+    
     	<insert tableName="appartenenza">
     		<column name="membro" valueComputed="SELECT id FROM account WHERE username = 'giulio'"/>
     		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Università di Camerino'"/>
@@ -173,10 +502,6 @@
     		<column name="autorizzazioni" value="GESTIONE_PROGETTO"/>
     	</insert>
     	
-    	<insert tableName="competenza">
-    		<column name="tag" value="java"/>
-    	</insert>
-    	
     	<insert tableName="progetto">
     		<column name="titolo" value="Progetto Prova 01"/>
     		<column name="descrizione" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
@@ -185,9 +510,12 @@
     		<column name="stato" value="IN_MODIFICA"/>
     	</insert>
     	
+    	
+    	<!-- PROGETTI -->
+    
     	<insert tableName="progetto_competenza">
-    		<column name="progetto_id" valueComputed="IDENTITY()"/>    		
-    		<column name="competenzas_id" valueComputed="SELECT id FROM competenza WHERE tag = 'java'"/>    		
+    		<column name="id_progetto" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'java'"/>    		
     	</insert>
     	
     </changeSet>

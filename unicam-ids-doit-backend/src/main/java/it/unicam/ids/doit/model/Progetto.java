@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
@@ -72,7 +73,7 @@ public class Progetto extends AbstractEntity<Progetto>
 	private Set<Candidatura> candidature = new HashSet<Candidatura>();
 
 	@ManyToMany
-	@JoinTable (name = "progetto_competenza")
+	@JoinTable (name = "progetto_competenza", inverseJoinColumns = @JoinColumn (name = "id_competenza"), joinColumns = @JoinColumn (name = "id_progetto"))
 	@SortNatural
 	private SortedSet<Competenza> competenzas = new TreeSet<Competenza>();
 	
