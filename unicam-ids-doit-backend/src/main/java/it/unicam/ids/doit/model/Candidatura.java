@@ -137,7 +137,7 @@ public class Candidatura extends AbstractEntity<Candidatura>
 	 * Facility per ottenere direttamente il set degli invitati
 	 * passando per {@link #getInviti()}.
 	 * 
-	 * @return
+	 * @return Un set eventualmente vuoto, mai <code>null</code>.
 	 */
 	@JsonView (JsonViews.CandidaturaTree.class)
 	public Set<Soggetto<?>> getInvitati()

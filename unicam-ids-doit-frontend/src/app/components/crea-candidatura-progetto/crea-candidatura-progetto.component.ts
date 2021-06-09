@@ -46,6 +46,8 @@ export class CreaCandidaturaProgettoComponent implements OnInit {
   
   submit() : void {
     console.log(this.candidatura);
+    this.candidatura.progetto = <Progetto>{id : this.candidatura.progetto.id};
+    console.log(this.candidatura);
     this.candidaturaService.create(this.candidatura).subscribe(createdCandidatura => console.log(createdCandidatura));
   }
 
