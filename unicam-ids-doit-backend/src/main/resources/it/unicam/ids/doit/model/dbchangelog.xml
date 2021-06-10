@@ -86,7 +86,19 @@
     		<column name="tag" value="SQL"/>
     	</insert>
     	<insert tableName="competenza">
+    		<column name="tag" value="xml"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="rdf"/>
+    	</insert>
+    	<insert tableName="competenza">
     		<column name="tag" value="marchigiano"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="chincaglierie"/>
+    	</insert>
+    	<insert tableName="competenza">
+    		<column name="tag" value="guèra"/>
     	</insert>
     	
     	<!-- UTENTI -->
@@ -158,6 +170,10 @@
     		<column name="username">varano</column>
     		<column name="email">gentile.varano@example.org</column>
     	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'guèra'"/>    		
+    	</insert>
     	
     	<insert tableName="soggetto">
     		<column name="discriminator_column" value="U"/>
@@ -171,6 +187,10 @@
     		<column name="id" valueComputed="IDENTITY()"/>
     		<column name="username">drew</column>
     	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'chincaglierie'"/>    		
+    	</insert>
 
     	<insert tableName="soggetto">
     		<column name="discriminator_column" value="U"/>
@@ -183,6 +203,10 @@
     	<insert tableName="account">
     		<column name="id" valueComputed="IDENTITY()"/>
     		<column name="username">uhtred</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'guèra'"/>    		
     	</insert>
 
     	<insert tableName="soggetto">
@@ -404,6 +428,35 @@
     	<insert tableName="soggetto_utente_competenza">
     		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
     		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'fortran'"/>    		
+    	</insert>
+
+    	<insert tableName="soggetto">
+    		<column name="discriminator_column" value="U"/>
+    	</insert>    
+    	<insert tableName="soggetto_utente">
+    		<column name="id" valueComputed="IDENTITY()" generationType=""/>
+    		<column name="nome">Tim</column>
+    		<column name="cognome">Berners-Lee</column>
+    	</insert>
+    	<insert tableName="account">
+    		<column name="id" valueComputed="IDENTITY()"/>
+    		<column name="username">tim</column>
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'tim'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'html'"/>    		
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'tim'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'xml'"/>    		
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'tim'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'css'"/>    		
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'tim'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'rdf'"/>    		
     	</insert>
 
     	<!-- SOGGETTI COLLETTIVI -->

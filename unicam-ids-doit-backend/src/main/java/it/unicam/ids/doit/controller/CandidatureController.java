@@ -1,6 +1,5 @@
 package it.unicam.ids.doit.controller;
 
-import java.security.Principal;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -8,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +19,7 @@ import it.unicam.ids.doit.config.Constants;
 import it.unicam.ids.doit.dto.CandidaturaDto;
 import it.unicam.ids.doit.dto.CandidaturaDtoFactory;
 import it.unicam.ids.doit.model.Candidatura;
+import it.unicam.ids.doit.model.Invito;
 import it.unicam.ids.doit.model.json.JsonViews;
 import it.unicam.ids.doit.repo.CandidaturaRepository;
 import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
@@ -69,8 +70,17 @@ public class CandidatureController
 	
 	@PostMapping
 	@JsonView (JsonViews.CandidaturaTree.class)
-	public Candidatura create(@RequestBody Candidatura candidatura)
+	public CandidaturaDto create(@RequestBody Candidatura candidatura)
 	{
-		return candidaturaRepository.save(candidatura);
+		return candidaturaDtoFactory.adapt(candidaturaRepository.save(candidatura));
 	}
+	
+	@PostMapping ("/{candidatura:\\d}/inviti")
+	@JsonView (JsonViews.CandidaturaTree.class)
+	public CandidaturaDto invita(@PathVariable Candidatura candidatura, @RequestBody Invito invito)
+	{
+		candidatura.getInviti().add(invito);
+		return candidaturaDtoFactory.adapt(candidaturaRepository.save(candidatura));
+	}
+	
 }

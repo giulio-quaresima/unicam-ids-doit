@@ -78,7 +78,6 @@ public class Progetto extends AbstractEntity<Progetto>
 	@ManyToMany
 	@JoinTable (name = "progetto_competenza", inverseJoinColumns = @JoinColumn (name = "id_competenza"), joinColumns = @JoinColumn (name = "id_progetto"))
 	@SortNatural
-	@JsonView(JsonViews.ProgettoTree.class)
 	private SortedSet<Competenza> competenzas = new TreeSet<Competenza>();
 	
 	public Stato getStato()

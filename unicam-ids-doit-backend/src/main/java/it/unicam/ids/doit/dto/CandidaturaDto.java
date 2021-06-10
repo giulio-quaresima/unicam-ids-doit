@@ -98,6 +98,11 @@ public class CandidaturaDto extends AbstractDto<Candidatura>
 	
 
 	// Delegate methods ///////////////////////////////////////////////////////////
+	
+	public String getAutopromozione()
+	{
+		return adaptee.getAutopromozione();
+	}
 
 	public boolean isInviata()
 	{

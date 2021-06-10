@@ -10,10 +10,10 @@ public interface JsonViews
 	public interface Candidatura extends Any {}
 	public interface Competenza extends Any {}
 	public interface Invito	extends Any {}
-	public interface Progetto extends Any {}
+	public interface Progetto extends Competenza {}
 	public interface Soggetto extends Any {}
 	public interface SoggettoCollettivo extends Soggetto {}
-	public interface SoggettoUtente extends Soggetto, Account {}
+	public interface SoggettoUtente extends Soggetto, Account, Competenza {}
 	
 	/**
 	 * Albero che ha la {@link it.unicam.ids.doit.model.Candidatura} come root.
@@ -26,7 +26,7 @@ public interface JsonViews
 	 * 
 	 * @author Giulio Quaresima (giulio.quaresima--at--gmail.com, giulio.quaresima--at--unipg.it, giulio.quaresima--at--studenti.unicam.it)
 	 */
-	public interface ProgettoTree extends Progetto, Competenza, Candidatura, Invito, SoggettoCollettivo, SoggettoUtente {}
+	public interface ProgettoTree extends Progetto, Candidatura, Invito, SoggettoCollettivo, SoggettoUtente {}
 	/**
 	 * Albero che ha il {@link it.unicam.ids.doit.model.Soggetto} (Utente o Collettivo) come root.
 	 * 

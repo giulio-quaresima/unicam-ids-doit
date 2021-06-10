@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthStatus } from '../model/auth-status';
 import { Candidatura } from '../model/candidatura';
+import { Invito } from '../model/invito';
 import { AbstractService } from './abstract-service';
 import { AuthService } from './auth.service';
 
@@ -40,6 +41,10 @@ export class CandidaturaService extends AbstractService {
 
   create(candidatura : Candidatura) : Observable<any> {
     return this.http.post(this.url, candidatura);
+  }
+
+  invita(invito : Invito) : Observable<any> {
+    return this.http.post(this.url + "/" + invito.candidatura.id + "/inviti", invito);
   }
 
   toUrl(candidatura : Candidatura) : string {

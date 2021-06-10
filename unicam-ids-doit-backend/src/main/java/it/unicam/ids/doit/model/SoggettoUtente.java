@@ -52,7 +52,6 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 	@ManyToMany
 	@JoinTable (name = "soggetto_utente_competenza", inverseJoinColumns = @JoinColumn (name = "id_competenza"), joinColumns = @JoinColumn (name = "id_soggetto_utente"))
 	@SortNatural
-	@JsonView (JsonViews.SoggettoTree.class)
 	private SortedSet<Competenza> competenzas = new TreeSet<Competenza>();
 	
 	@JsonView (JsonViews.SoggettoTree.class)
@@ -105,7 +104,6 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 		this.appartenenze = appartenenze;
 	}
 	
-	@JsonView (JsonViews.SoggettoTree.class)
 	public SortedSet<Competenza> getCompetenzas()
 	{
 		return competenzas;
@@ -114,7 +112,7 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 	{
 		this.competenzas = competenzas;
 	}
-
+	
 	public boolean has(Autorizzazione autorizzazione, SoggettoCollettivo soggettoCollettivo)
 	{
 		if (soggettoCollettivo != null && autorizzazione != null)

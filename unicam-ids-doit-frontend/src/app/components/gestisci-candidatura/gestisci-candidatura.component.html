@@ -1,0 +1,44 @@
+<h2>Candidatura al progetto "{{candidatura.progetto.titolo}}"</h2>
+
+<p>
+    <span *ngFor="let competenza of candidatura.progetto.competenzas" class="badge rounded-pill bg-info mx-1">{{competenza.tag}}</span>
+</p>
+
+Questa candidatura viene presentata a nome di: <strong>{{candidatura.soggetto.denominazione}}</strong>
+
+<form ngNativeValidate>
+
+    <div>
+		<label class="form-label">Descrivi qui perché dovrebbero prendere in considerazione la tua / vostra candidatura</label>
+		<textarea class="form-control" name="autopromozione" [(ngModel)]="candidatura.autopromozione" required></textarea>
+	</div>
+
+</form>
+
+<h4>Soggetti invitati</h4>
+
+<ul>
+    <li *ngFor="let invito of candidatura.inviti">
+        {{invito.invitato.denominazione}}
+        "{{invito.noteInvito}}"
+<!--         <span *ngFor="let competenza of invito.invitato.competenzas" class="badge rounded-pill bg-info mx-1">{{competenza.tag}}</span>
+ -->    </li>
+</ul>
+
+<h4>Soggetti con competenze compatibili a quelle richieste dal progetto</h4>
+
+<div>
+
+    <div *ngFor="let soggettoUtente of candidatura.soggettiUtenteSuggeritiPerInvito; let invitoIndex = index;" class="row">
+        <div class="col">
+            {{soggettoUtente.denominazione}}
+            <span *ngFor="let competenza of soggettoUtente.competenzas" class="badge rounded-pill bg-info mx-1">{{competenza.tag}}</span>
+        </div>
+        <div class="input-group col">
+            <input [(ngModel)]="inviti[invitoIndex].noteInvito" type="text" class="form-control" placeholder="Testo dell'invito">
+            <input type="hidden"/>
+            <button class="btn btn-outline-primary" type="button" (click)="invita(invitoIndex)">Invita</button>
+        </div>
+    </div>
+
+</div>

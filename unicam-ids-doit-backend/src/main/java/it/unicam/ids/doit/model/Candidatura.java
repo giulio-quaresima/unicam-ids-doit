@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -41,7 +42,7 @@ public class Candidatura extends AbstractEntity<Candidatura>
 	@JsonView (JsonViews.CandidaturaTree.class)
 	private Soggetto<?> soggetto;
 	
-	@OneToMany (mappedBy = "candidatura")
+	@OneToMany (mappedBy = "candidatura", cascade = CascadeType.ALL)
 	@JsonView (JsonViews.CandidaturaTree.class)
 	private Set<Invito> inviti = new HashSet<>();
 	
