@@ -16,6 +16,7 @@ import it.unicam.ids.doit.model.json.JsonViews;
 public class ProgettoDto extends AbstractDto<Progetto>
 {
 	private boolean currentUserOwner = false;
+	private boolean currentUserPuoCandidarsi = false;
 	
 	public ProgettoDto(Progetto adaptee)
 	{
@@ -31,6 +32,15 @@ public class ProgettoDto extends AbstractDto<Progetto>
 		this.currentUserOwner = currentUserOwner;
 	}
 	
+	public boolean isCurrentUserPuoCandidarsi()
+	{
+		return currentUserPuoCandidarsi;
+	}
+	public void setCurrentUserPuoCandidarsi(boolean currentUserPuoCandidarsi)
+	{
+		this.currentUserPuoCandidarsi = currentUserPuoCandidarsi;
+	}
+
 	public boolean isVisible()
 	{
 		return isVisibilePubblicamente() || isCurrentUserOwner();

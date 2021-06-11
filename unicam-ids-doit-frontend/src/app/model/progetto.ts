@@ -10,6 +10,7 @@ export interface Progetto extends AbstractEntity {
     competenzas : Competenza[];
     proponente : SoggettoCollettivo;
     currentUserOwner : boolean;
+    currentUserPuoCandidarsi : boolean;
     visibilePubblicamente : boolean;
     visible : boolean;
 }

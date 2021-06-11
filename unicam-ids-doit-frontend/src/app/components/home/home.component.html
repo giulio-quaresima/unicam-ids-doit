@@ -2,6 +2,9 @@
     <a routerLink="/crea-progetto" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Crea nuovo progetto</a>
 </div>
 
+{{authStatus.utente?.account?.username}}
+{{authStatus.utente?.denominazione}}
+
 <div *ngFor="let progetto of progettoService.progettiVisibili" class="card mt-3">
     <h5 class="card-header">{{progetto.proponente.denominazione}}</h5>
     <div class="card-body">
@@ -14,6 +17,6 @@
       <h5 class="card-title">Obiettivi</h5>
       <p class="card-text">{{progetto.obiettivi}}</p>
       <a *ngIf="progetto.currentUserOwner" [routerLink]="['/modifica-progetto',progetto.id]" class="btn btn-outline-primary me-3">Modifica</a>
-      <a *ngIf="progetto.stato === 'PUBBLICATO'" [routerLink]="['/crea-candidatura-progetto',progetto.id]" class="btn btn-outline-danger">Càndidati!</a>
+      <a *ngIf="progetto.currentUserPuoCandidarsi" [routerLink]="['/crea-candidatura-progetto',progetto.id]" class="btn btn-outline-danger">Càndidati!</a>
     </div>
 </div>

@@ -54,6 +54,10 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 	@SortNatural
 	private SortedSet<Competenza> competenzas = new TreeSet<Competenza>();
 	
+	/**
+	 * @return Tutte le proprie candidature, comprese quelle
+	 * che riguardano
+	 */
 	@JsonView (JsonViews.SoggettoTree.class)
 	public Set<Candidatura> getCandidatureAll()
 	{
@@ -61,7 +65,6 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 					getCandidature().stream(), 
 					getAppartenenze()
 					.stream()
-					.filter(a -> a.getAutorizzazioni().contains(Autorizzazione.CANDIDATURA))
 					.map(Appartenenza::getOrganizzazione)
 					.flatMap(s -> s.getCandidature().stream()))
 				.collect(Collectors.toSet());
