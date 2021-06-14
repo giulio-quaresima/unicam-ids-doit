@@ -9,7 +9,11 @@
     
         <div [collapse]="isCollapsed" [isAnimated]="true" class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a routerLink="/list-candidature" routerLinkActive="active" class="nav-link">Candidature</a></li>
+                <li 
+                    class="nav-item" 
+                    [ngClass]="{'active': currentRouteNameIs('list-candidature') || currentRouteNameIs('crea-candidatura-progetto') || currentRouteNameIs('gestisci-candidatura')}">
+                        <a routerLink="/list-candidature" routerLinkActive="active" class="nav-link">Candidature</a>
+                </li>
                 <li class="nav-item"><a href="#" class="nav-link">{{authStatus?.utente?.nome}} {{authStatus?.utente?.cognome}}</a></li>
             </ul>
         </div>

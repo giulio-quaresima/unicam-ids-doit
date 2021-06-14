@@ -9,13 +9,13 @@ import { CreaCandidaturaProgettoComponent } from './components/crea-candidatura-
 import { ListCandidatureComponent } from './components/list-candidature/list-candidature.component';
 
 const routes: Routes = [
-  { path : "", component : HomeComponent},
-  { path : "crea-progetto", component : CreaProgettoComponent},
-  { path : "modifica-progetto/:id", component : ModificaProgettoComponent},
-  { path : "crea-candidatura-progetto/:idProgetto", component : CreaCandidaturaProgettoComponent},
-  { path : "list-candidature", component : ListCandidatureComponent},
-  { path : "gestisci-candidatura/:id", component : GestisciCandidaturaComponent},
-  { path : "**", component : NotFoundComponent}
+  { data : {name : "home"}, path : "", component : HomeComponent},
+  { data : {name : "crea-progetto"}, path : "crea-progetto", component : CreaProgettoComponent},
+  { data : {name : "modifica-progetto"}, path : "modifica-progetto/:id", component : ModificaProgettoComponent},
+  { data : {name : "crea-candidatura-progetto"}, path : "crea-candidatura-progetto/:idProgetto", component : CreaCandidaturaProgettoComponent},
+  { data : {name : "list-candidature"}, path : "list-candidature", component : ListCandidatureComponent},
+  { data : {name : "gestisci-candidatura"}, path : "gestisci-candidatura/:id", component : GestisciCandidaturaComponent},
+  { data : {name : "404"}, path : "**", component : NotFoundComponent}
 ];
 
 @NgModule({

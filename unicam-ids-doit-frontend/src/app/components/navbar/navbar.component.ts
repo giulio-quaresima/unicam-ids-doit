@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 import { AuthStatus } from 'src/app/model/auth-status';
 import { SoggettoUtente } from 'src/app/model/soggetto-utente';
 import { AuthService } from 'src/app/services/auth.service';
@@ -19,7 +21,7 @@ export class NavbarComponent implements OnInit {
   users : SoggettoUtente[] = [];
   authStatus : AuthStatus = <AuthStatus>{};
 
-  constructor(private router : Router, private authService : AuthService) { }
+  constructor(private router : Router, private authService : AuthService, public activatedRoute : ActivatedRoute) { }
 
     ngOnInit(): void {
       this.authService.authStatus.subscribe(this.authEventConsumer.bind(this)); // Non togliere bind!!!
@@ -29,6 +31,10 @@ export class NavbarComponent implements OnInit {
       this.authService.getCurrentUser().subscribe(response => {
         this.authEventConsumer(response.data);
       });
+    }
+
+    currentRouteNameIs(name : string) : Observable<boolean> {
+      return this.activatedRoute.data.pipe(map(data => data.name == name));
     }
     
     authEventConsumer(authStatus : AuthStatus) : void {

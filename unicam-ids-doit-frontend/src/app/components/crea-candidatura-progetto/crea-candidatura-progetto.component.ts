@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthStatus } from 'src/app/model/auth-status';
 import { Candidatura } from 'src/app/model/candidatura';
 import { Progetto } from 'src/app/model/progetto';
@@ -26,6 +26,7 @@ export class CreaCandidaturaProgettoComponent implements OnInit {
 
   constructor(
     private route : ActivatedRoute,
+    private router : Router,
     private progettoService : ProgettoService,
     public soggettoService : SoggettoCollettivoService,
     public authService : AuthService,
@@ -48,7 +49,10 @@ export class CreaCandidaturaProgettoComponent implements OnInit {
     console.log(this.candidatura);
     this.candidatura.progetto = <Progetto>{id : this.candidatura.progetto.id};
     console.log(this.candidatura);
-    this.candidaturaService.create(this.candidatura).subscribe(createdCandidatura => console.log(createdCandidatura));
+    this.candidaturaService.create(this.candidatura).subscribe(createdCandidatura => {
+      console.log(createdCandidatura);
+      this.router.navigate(['gestisci-candidatura/' + createdCandidatura.id]);
+    });
   }
 
 }
