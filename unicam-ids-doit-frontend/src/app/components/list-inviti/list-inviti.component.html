@@ -1,0 +1,11 @@
+<div *ngFor="let invito of authStatus.utente?.invitiRicevutiNonAncoraAccettati" class="card mt-3">
+    <h5 class="card-header">Invito</h5>
+    <div class="card-body">
+        <p class="card-text">
+            Invito partecipazione alla candidatura di: {{invito.candidatura.denominazioneCandidato}} 
+            al progetto: "{{invito.candidatura.progetto.titolo}}""
+            proposto da: {{invito.candidatura.progetto.denominazioneProponente}}
+        </p>
+      <a [routerLink]="['/gestisci-invito',invito.id]" class="btn btn-outline-primary">Gestisci</a>
+    </div>
+</div>

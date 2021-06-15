@@ -1,0 +1,21 @@
+<form #myForm="ngForm" ngNativeValidate>
+
+    <h4>
+        Invito partecipazione alla candidatura di: {{invito.candidatura.denominazioneCandidato}} 
+        al progetto: "{{invito.candidatura.progetto.titolo}}""
+        proposto da: {{invito.candidatura.progetto.denominazioneProponente}}
+    </h4>
+
+    <p>{{invito.noteInvito}}</p>
+
+    <div class="form-group">
+		<label class="form-label">Descrizione dell'accettazione o del rifiuto</label>
+		<textarea type="text" [(ngModel)]="invito.noteAccettazione" class="form-control" name="titolo" required></textarea>
+	</div>
+
+    <div class="form-group mt-3">
+        <button class="btn btn-success me-2" type="submit" (click)="accetta()" [disabled]="!myForm.valid">Accetta l'invito</button>
+        <button class="btn btn-danger" type="submit" (click)="rifiuta()" [disabled]="!myForm.valid">Rifiuta l'invito</button>
+    </div>
+
+</form>

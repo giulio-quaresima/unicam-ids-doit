@@ -133,7 +133,7 @@ public class SoggettoUtente extends Soggetto<SoggettoUtente>
 	@Override
 	public String getDenominazione()
 	{
-		return getCognome() + ' ' + getNome();
+		return getNome() + ' ' + getCognome();
 	}
 
 	@Override

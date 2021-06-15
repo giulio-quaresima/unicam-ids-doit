@@ -83,6 +83,12 @@ public abstract class Soggetto<E extends Soggetto<?>> extends AbstractEntity<E> 
 		this.invitiRicevuti = invitiRicevuti;
 	}
 	
+	@JsonView (JsonViews.SoggettoTree.class)
+	public Set<Invito> getInvitiRicevutiNonAncoraAccettati()
+	{
+		return getInvitiRicevuti().stream().filter(Invito::isAccettazioneNull).collect(Collectors.toSet());
+	}
+	
 	/**
 	 * Facility per ottenere direttamente le candidature
 	 * passando per {@link #getInvitiRicevuti()}.

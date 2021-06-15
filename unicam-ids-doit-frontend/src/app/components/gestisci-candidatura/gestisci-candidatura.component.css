@@ -1,0 +1,25 @@
+.invito.accettato {
+    color: var(--bs-success);
+}
+.invito.rifiutato {
+    color: var(--bs-danger);
+    text-decoration: line-through;
+}
+.invito .badge {
+    display: none;
+}
+.invito .badge.competenza {
+    display: inline-block;
+}
+.invito.accettato .badge.accettato {
+    display: inline-block;
+}
+.invito.accettato .badge.rifiutato {
+    display: none;
+}
+.invito.rifiutato .badge.rifiutato {
+    display: inline-block;
+}
+.invito.rifiutato .badge.accettato {
+    display: none;
+}

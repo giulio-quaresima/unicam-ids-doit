@@ -48,7 +48,7 @@ public class Candidatura extends AbstractEntity<Candidatura>
 	
 	@ManyToOne (optional = false)
 	@NotNull
-	@JsonView (JsonViews.CandidaturaTree.class)
+	@JsonView ({JsonViews.CandidaturaTree.class, JsonViews.SoggettoTree.class})
 	private Progetto progetto;
 
 	/**
@@ -120,6 +120,16 @@ public class Candidatura extends AbstractEntity<Candidatura>
 	public void setSoggetto(Soggetto<?> soggetto)
 	{
 		this.soggetto = soggetto;
+	}
+
+	@JsonView (JsonViews.SoggettoTree.class)
+	public String getDenominazioneCandidato()
+	{
+		if (soggetto != null)
+		{
+			return soggetto.getDenominazione();
+		}
+		return null;
 	}
 
 	/**

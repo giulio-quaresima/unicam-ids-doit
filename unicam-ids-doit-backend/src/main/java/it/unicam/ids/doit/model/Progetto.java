@@ -134,6 +134,16 @@ public class Progetto extends AbstractEntity<Progetto>
 		this.proponente = proponente;
 	}
 	
+	@JsonView (JsonViews.SoggettoTree.class)
+	public String getDenominazioneProponente()
+	{
+		if (proponente != null)
+		{
+			return proponente.getDenominazione();
+		}
+		return null;
+	}
+	
 	public Set<Candidatura> getCandidature()
 	{
 		return candidature;

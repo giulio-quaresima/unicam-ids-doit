@@ -9,24 +9,24 @@
     
         <div [collapse]="isCollapsed" [isAnimated]="true" class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto">
-                <li 
-                    class="nav-item" 
-                    [ngClass]="{'active': currentRouteNameIs('list-candidature') || currentRouteNameIs('crea-candidatura-progetto') || currentRouteNameIs('gestisci-candidatura')}">
-                        <a routerLink="/list-candidature" routerLinkActive="active" class="nav-link">Candidature</a>
-                </li>
-                <li class="nav-item"><a href="#" class="nav-link">{{authStatus?.utente?.nome}} {{authStatus?.utente?.cognome}}</a></li>
+                <li class="nav-item"><a routerLink="/list-candidature" routerLinkActive="active" class="nav-link">Candidature</a></li>
+                <li class="nav-item">
+                    <a routerLink="/list-inviti" routerLinkActive="active" class="nav-link">
+                        Inviti
+                        <span *ngIf="invitiBadgeNumber" class="badge rounded-pill bg-warning text-dark">{{invitiBadgeNumber}}</span>
+                    </a>
+            </li>
             </ul>
-        </div>
-
-        <form class="d-flex">
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01">Scegli un utente</label>
-                <select [(ngModel)]="username" (ngModelChange)="login()" name="username" class="form-select" id="inputGroupSelect01" >
-                  <option value="">-- Guest --</option>
-                  <option *ngFor="let user of users" [value]="user.account.username">{{user.nome}} {{user.cognome}}</option>
-                </select>
-            </div>
-        </form>
+            <form class="d-flex">
+                <div class="input-group">
+                    <label class="input-group-text" for="inputGroupSelect01">Scegli un utente</label>
+                    <select [(ngModel)]="username" (ngModelChange)="login()" name="username" class="form-select" id="inputGroupSelect01" >
+                      <option value="">-- Guest --</option>
+                      <option *ngFor="let user of users" [value]="user.account.username">{{user.nome}} {{user.cognome}}</option>
+                    </select>
+                </div>
+            </form>
+        </div>    
 
     </div>
 

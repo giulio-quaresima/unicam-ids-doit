@@ -8,6 +8,8 @@ import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.unicam.ids.doit.model.Appartenenza;
+import it.unicam.ids.doit.model.Appartenenza.Autorizzazione;
 import it.unicam.ids.doit.model.Candidatura;
 import it.unicam.ids.doit.model.Soggetto;
 import it.unicam.ids.doit.model.SoggettoCollettivo;
@@ -63,9 +65,22 @@ public class CandidaturaDtoFactory extends AbstractDtoFactory<Candidatura, Candi
 
 	private <S extends Soggetto<S>> NavigableSet<S> rimuoviSoggettiImpropri(NavigableSet<S> navigableSet, Candidatura candidatura, SoggettoUtente utenteAutenticato)
 	{
-		navigableSet.remove(utenteAutenticato);
+		if (utenteAutenticato != null)
+		{			
+			navigableSet.remove(utenteAutenticato);
+		}
 		navigableSet.removeAll(candidatura.getProgetto().getCandidati());
 		navigableSet.removeAll(candidatura.getInvitati());
+		SoggettoCollettivo proponente = candidatura.getProgetto().getProponente();
+		if (proponente != null)
+		{			
+			proponente
+				.getMembri()
+				.stream()
+				.filter(appartenenza -> appartenenza.getAutorizzazioni().contains(Autorizzazione.GESTIONE_PROGETTO))
+				.map(Appartenenza::getMembro)
+				.forEach(navigableSet::remove);
+		}
 		return navigableSet;
 	}
 

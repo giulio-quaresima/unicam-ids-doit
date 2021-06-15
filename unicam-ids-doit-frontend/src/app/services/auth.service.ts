@@ -42,6 +42,16 @@ export class AuthService extends AbstractService {
     );
    }
 
+   refreshCurrentUser() : void {
+    this.genericService.getAny(this.baseUrl).subscribe(
+      response => {
+        console.log("AuthService.refreshCurrentUser()");
+        console.log(response);
+        this.authStatus.next((<Response<AuthStatus>>response).data);
+      }
+    );
+   }
+
    getCurrentUser() : Observable<Response<AuthStatus>> {
     return this.genericService.getAny(this.baseUrl);
    }

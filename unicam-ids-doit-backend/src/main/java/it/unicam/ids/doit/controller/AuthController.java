@@ -2,6 +2,7 @@ package it.unicam.ids.doit.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,7 +39,7 @@ public class AuthController
 	private UnsecurityFilter unsecurityFilter;
 	
 	@GetMapping
-	@JsonView (JsonViews.SoggettoUtente.class)
+	@JsonView (JsonViews.SoggettoTree.class)
 	public Response<AuthStatus> isAuthenticated(Principal principal)
 	{
 		SoggettoUtente utente = null;
@@ -50,7 +51,7 @@ public class AuthController
 	}
 	
 	@RequestMapping ("/login")
-	@JsonView (JsonViews.SoggettoUtente.class)
+	@JsonView (JsonViews.SoggettoTree.class)
 	public Response<AuthStatus> login(
 			@RequestParam ("username") String username,
 			@RequestParam ("password") String password)
@@ -84,7 +85,7 @@ public class AuthController
 	@Deprecated
 	public Response<List<SoggettoUtente>> users()
 	{
-		return Response.of(soggettoUtenteRepository.findAll());
+		return Response.of(soggettoUtenteRepository.findAll().stream().sorted().collect(Collectors.toList()));
 	}
 	
 	@JsonView (JsonViews.SoggettoUtente.class)

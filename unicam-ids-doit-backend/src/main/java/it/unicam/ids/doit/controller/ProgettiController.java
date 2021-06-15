@@ -26,7 +26,6 @@ import it.unicam.ids.doit.model.Progetto;
 import it.unicam.ids.doit.model.Progetto.Stato;
 import it.unicam.ids.doit.model.json.JsonViews;
 import it.unicam.ids.doit.repo.ProgettoRepository;
-import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
 import it.unicam.ids.doit.service.CompetenzaService;
 
 /**
@@ -50,12 +49,9 @@ public class ProgettiController
 	@Autowired
 	private ProgettoDtoFactory progettoDtoFactory;
 	
-	@Autowired
-	private SoggettoUtenteRepository soggettoUtenteRepository;
-	
 	@GetMapping 
 	@JsonView (JsonViews.ProgettoTree.class)
-	public List<ProgettoDto> get(Principal principal)
+	public List<ProgettoDto> get()
 	{
 		return progettoDtoFactory
 				.adaptAll(progettoRepository.findAll().stream())

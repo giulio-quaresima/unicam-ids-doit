@@ -24,7 +24,7 @@ public class Invito extends AbstractEntity<Invito>
 	private Soggetto<?> invitato;
 	
 	@Basic
-	private boolean accettazione;
+	private Boolean accettazione;
 	
 	@Basic
 	private String noteInvito;
@@ -66,18 +66,24 @@ public class Invito extends AbstractEntity<Invito>
 
 	/**
 	 * <code>true</code> sse {@link #getInvitato()}
-	 * ha accettato l'invito.
+	 * ha accettato l'invito; se <code>null</code> significa che l'invitato
+	 * non ha ancora deciso se accettare o meno.
 	 * 
 	 * @return
 	 */
-	public boolean isAccettazione()
+	public Boolean isAccettazione()
 	{
 		return accettazione;
 	}
 
-	public void setAccettazione(boolean accettazione)
+	public void setAccettazione(Boolean accettazione)
 	{
 		this.accettazione = accettazione;
+	}
+	
+	public boolean isAccettazioneNull()
+	{
+		return isAccettazione() == null;
 	}
 
 	/**

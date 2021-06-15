@@ -16,6 +16,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AuthService } from './services/auth.service';
 import { CreaCandidaturaProgettoComponent } from './components/crea-candidatura-progetto/crea-candidatura-progetto.component';
 import { ListCandidatureComponent } from './components/list-candidature/list-candidature.component';
+import { ListInvitiComponent } from './components/list-inviti/list-inviti.component';
+import { GestisciInvitoComponent } from './components/gestisci-invito/gestisci-invito.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { ListCandidatureComponent } from './components/list-candidature/list-can
     GestisciCandidaturaComponent,
     NavbarComponent,
     CreaCandidaturaProgettoComponent,
-    ListCandidatureComponent
+    ListCandidatureComponent,
+    ListInvitiComponent,
+    GestisciInvitoComponent
   ],
   imports: [
     BrowserModule,

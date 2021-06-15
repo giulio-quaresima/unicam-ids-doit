@@ -22,7 +22,6 @@ import it.unicam.ids.doit.model.Candidatura;
 import it.unicam.ids.doit.model.Invito;
 import it.unicam.ids.doit.model.json.JsonViews;
 import it.unicam.ids.doit.repo.CandidaturaRepository;
-import it.unicam.ids.doit.repo.SoggettoUtenteRepository;
 
 /**
  * 
@@ -41,9 +40,6 @@ public class CandidatureController
 	
 	@Autowired
 	private CandidaturaDtoFactory candidaturaDtoFactory;
-	
-	@Autowired
-	private SoggettoUtenteRepository soggettoUtenteRepository;
 	
 	@GetMapping
 	@JsonView (JsonViews.CandidaturaTree.class)

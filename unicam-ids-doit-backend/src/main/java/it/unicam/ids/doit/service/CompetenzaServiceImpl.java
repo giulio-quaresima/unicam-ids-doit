@@ -25,6 +25,7 @@ public class CompetenzaServiceImpl implements CompetenzaService
 		NavigableSet<Competenza> competenzas = new TreeSet<>();
 		for (String tag : tags)
 		{
+			tag = normalize(tag);
 			Competenza competenza = new Competenza();
 			competenza.setTag(tag);
 			Optional<Competenza> optional = competenzaRepository.findOne(Example.of(competenza));
@@ -39,6 +40,11 @@ public class CompetenzaServiceImpl implements CompetenzaService
 			competenzas.add(competenza);
 		}
 		return competenzas;
+	}
+
+	private String normalize(String tag)
+	{
+		return tag.trim().toLowerCase();
 	}
 
 }

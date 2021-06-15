@@ -2,9 +2,6 @@
     <a routerLink="/crea-progetto" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Crea nuovo progetto</a>
 </div>
 
-{{authStatus.utente?.account?.username}}
-{{authStatus.utente?.denominazione}}
-
 <div *ngFor="let progetto of progettoService.progettiVisibili" class="card mt-3">
     <h5 class="card-header">{{progetto.proponente.denominazione}}</h5>
     <div class="card-body">

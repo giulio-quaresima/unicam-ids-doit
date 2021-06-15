@@ -21,16 +21,19 @@ public interface JsonViews
 	 * @author Giulio Quaresima (giulio.quaresima--at--gmail.com, giulio.quaresima--at--unipg.it, giulio.quaresima--at--studenti.unicam.it)
 	 */
 	public interface CandidaturaTree extends Candidatura, Progetto, Invito, SoggettoCollettivo, SoggettoUtente {}
+	
 	/**
 	 * Albero che ha il {@link it.unicam.ids.doit.model.Progetto} come root.
 	 * 
 	 * @author Giulio Quaresima (giulio.quaresima--at--gmail.com, giulio.quaresima--at--unipg.it, giulio.quaresima--at--studenti.unicam.it)
 	 */
+	
 	public interface ProgettoTree extends Progetto, Candidatura, Invito, SoggettoCollettivo, SoggettoUtente {}
+	
 	/**
 	 * Albero che ha il {@link it.unicam.ids.doit.model.Soggetto} (Utente o Collettivo) come root.
 	 * 
 	 * @author Giulio Quaresima (giulio.quaresima--at--gmail.com, giulio.quaresima--at--unipg.it, giulio.quaresima--at--studenti.unicam.it)
 	 */
-	public interface SoggettoTree extends SoggettoCollettivo, SoggettoUtente, Invito, Candidatura, Appartenenza {}
+	public interface SoggettoTree extends SoggettoCollettivo, SoggettoUtente, Invito, Candidatura, Progetto, Appartenenza {}
 }

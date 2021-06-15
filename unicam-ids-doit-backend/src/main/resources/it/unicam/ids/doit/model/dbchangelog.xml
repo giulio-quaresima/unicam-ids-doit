@@ -32,10 +32,10 @@
     		<column name="tag" value="javascript"/>
     	</insert>
     	<insert tableName="competenza">
-    		<column name="tag" value="C"/>
+    		<column name="tag" value="c"/>
     	</insert>
     	<insert tableName="competenza">
-    		<column name="tag" value="C++"/>
+    		<column name="tag" value="c++"/>
     	</insert>
     	<insert tableName="competenza">
     		<column name="tag" value="perl"/>
@@ -44,7 +44,7 @@
     		<column name="tag" value="python"/>
     	</insert>
     	<insert tableName="competenza">
-    		<column name="tag" value="LISP"/>
+    		<column name="tag" value="lisp"/>
     	</insert>
     	<insert tableName="competenza">
     		<column name="tag" value="bash"/>
@@ -56,13 +56,13 @@
     		<column name="tag" value="css"/>
     	</insert>
     	<insert tableName="competenza">
-    		<column name="tag" value=".NET"/>
+    		<column name="tag" value=".net"/>
     	</insert>
     	<insert tableName="competenza">
     		<column name="tag" value="assembler"/>
     	</insert>
     	<insert tableName="competenza">
-    		<column name="tag" value="R"/>
+    		<column name="tag" value="r"/>
     	</insert>
     	<insert tableName="competenza">
     		<column name="tag" value="matlab"/>
@@ -71,7 +71,7 @@
     		<column name="tag" value="fortran"/>
     	</insert>
     	<insert tableName="competenza">
-    		<column name="tag" value="ALGOL"/>
+    		<column name="tag" value="algol"/>
     	</insert>
     	<insert tableName="competenza">
     		<column name="tag" value="ada"/>
@@ -83,7 +83,7 @@
     		<column name="tag" value="go"/>
     	</insert>
     	<insert tableName="competenza">
-    		<column name="tag" value="SQL"/>
+    		<column name="tag" value="sql"/>
     	</insert>
     	<insert tableName="competenza">
     		<column name="tag" value="xml"/>
@@ -120,7 +120,7 @@
     		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
     		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'java'"/>    		
     	</insert>
-    	
+    	    	
     	<insert tableName="soggetto">
     		<column name="discriminator_column" value="U"/>
     	</insert>
@@ -135,8 +135,32 @@
     		<column name="email">r.daneel.olivaw@example.org</column>
     	</insert>
     	<insert tableName="soggetto_utente_competenza">
-    		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'rdaneel'"/>    		
     		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'assembler'"/>    		
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'rdaneel'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'algol'"/>    		
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'rdaneel'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'r'"/>    		
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'rdaneel'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'ada'"/>    		
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'rdaneel'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'lisp'"/>    		
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'rdaneel'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'fortran'"/>    		
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'rdaneel'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'c'"/>    		
     	</insert>
     	
     	<insert tableName="soggetto">
@@ -257,7 +281,7 @@
     	</insert>
     	<insert tableName="soggetto_utente_competenza">
     		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
-    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'SQL'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'sql'"/>    		
     	</insert>
 
     	<insert tableName="soggetto">
@@ -274,7 +298,7 @@
     	</insert>
     	<insert tableName="soggetto_utente_competenza">
     		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
-    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'C'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'c'"/>    		
     	</insert>
 
     	<insert tableName="soggetto">
@@ -293,6 +317,14 @@
     		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
     		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'java'"/>    		
     	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'eric'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'c++'"/>    		
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'eric'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = '.net'"/>    		
+    	</insert>
 
     	<insert tableName="soggetto">
     		<column name="discriminator_column" value="U"/>
@@ -309,6 +341,14 @@
     	<insert tableName="soggetto_utente_competenza">
     		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
     		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'java'"/>    		
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'martin'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'javascript'"/>    		
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'martin'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = '.net'"/>    		
     	</insert>
 
     	<insert tableName="soggetto">
@@ -360,6 +400,10 @@
     	<insert tableName="soggetto_utente_competenza">
     		<column name="id_soggetto_utente" valueComputed="IDENTITY()"/>    		
     		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'smalltalk'"/>    		
+    	</insert>
+    	<insert tableName="soggetto_utente_competenza">
+    		<column name="id_soggetto_utente" valueComputed="SELECT id FROM account WHERE username = 'dan'"/>    		
+    		<column name="id_competenza" valueComputed="SELECT id FROM competenza WHERE tag = 'javascript'"/>    		
     	</insert>
 
     	<insert tableName="soggetto">
@@ -508,6 +552,26 @@
     	<insert tableName="appartenenza_autorizzazioni">
     		<column name="appartenenza_id" valueComputed="IDENTITY()"/>
     		<column name="autorizzazioni" value="GESTIONE_PROGETTO"/>
+    	</insert>
+    	
+    	<insert tableName="appartenenza_autorizzazioni">
+    		<column name="appartenenza_id" valueComputed="IDENTITY()"/>
+    		<column name="autorizzazioni" value="CANDIDATURA"/>
+    	</insert>
+    	
+    	<insert tableName="appartenenza">
+    		<column name="membro" valueComputed="SELECT id FROM account WHERE username = 'edsger'"/>
+    		<column name="organizzazione" valueComputed="SELECT id FROM soggetto_collettivo WHERE denominazione = 'Università di Camerino'"/>
+    	</insert>
+    	
+    	<insert tableName="appartenenza_autorizzazioni">
+    		<column name="appartenenza_id" valueComputed="IDENTITY()"/>
+    		<column name="autorizzazioni" value="GESTIONE_PROGETTO"/>
+    	</insert>
+    	
+    	<insert tableName="appartenenza_autorizzazioni">
+    		<column name="appartenenza_id" valueComputed="IDENTITY()"/>
+    		<column name="autorizzazioni" value="CANDIDATURA"/>
     	</insert>
     	
     	<insert tableName="appartenenza">
