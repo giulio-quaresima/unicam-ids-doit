@@ -22,6 +22,7 @@ andare quindi nella cartella `unicam-ids-doit-frontend` ed eseguire il comando
 ```
 ng serve
 ```
+(potrebbe essere necessario prima eseguire `npm install` nella stessa cartella.
 
 A questo punto la webapp dovrebbe essere disponibile all'indirizzo http://localhost:4200
 
