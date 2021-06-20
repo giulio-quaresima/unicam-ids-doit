@@ -24,7 +24,7 @@ ng serve
 ```
 (potrebbe essere necessario prima eseguire `npm install` nella stessa cartella).
 
-**ATTENZIONE!!!** A causa del bug #1 le versioni 0.3, 0.4 e 0.5 non compilano correttamente. Una volta scaricate tale versioni, applicare le medesime correzioni applicate con la commit bd4542f38576f4f15fa8090c98ea24067310405d (ovviamente con la relativa versione).
+**ATTENZIONE!!!** A causa del bug [#1](https://github.com/giulio-quaresima/unicam-ids-doit/issues/1) le versioni 0.3, 0.4 e 0.5 non compilano correttamente. Una volta scaricate tale versioni, applicare le medesime correzioni applicate con la commit [bd4542f](https://github.com/giulio-quaresima/unicam-ids-doit/commit/bd4542f38576f4f15fa8090c98ea24067310405d) (ovviamente con la relativa versione).
 
 A questo punto la webapp dovrebbe essere disponibile all'indirizzo http://localhost:4200
 
