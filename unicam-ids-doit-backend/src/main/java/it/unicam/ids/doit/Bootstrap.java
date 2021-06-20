@@ -30,7 +30,10 @@ public class Bootstrap
 				+ "*********************************************");
 		try (Scanner scanner = new Scanner(System.in))
 		{
-			scanner.nextLine();
+			if (scanner.hasNextLine())
+			{
+				scanner.nextLine();
+			}
 		}
 		
 		int exitCode = SpringApplication.exit(app);
